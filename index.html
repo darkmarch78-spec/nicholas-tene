@@ -564,7 +564,7 @@ header{z-index:20;gap:16px}
 <p>A short wave across the films. Tune one, then preview it.</p>
 </div>
 <div class="channel-bar" role="tablist" aria-label="Film channels">
-<button type="button" class="ch-btn is-on" role="tab" aria-selected="true" data-ch="CH 03" data-title="Nickolazei" data-genre="Body horror" data-loop="media/nk_loop.mp4" data-poster="media/nk_poster.jpg" data-pv="pv-nk" data-log="A body-horror ballet. The performance doesn’t end when the eyes start to bleed.">
+<button type="button" class="ch-btn" role="tab" aria-selected="false" data-ch="CH 03" data-title="Nickolazei" data-genre="Body horror" data-loop="media/nk_loop.mp4" data-poster="media/nk_poster.jpg" data-pv="pv-nk" data-log="A body-horror ballet. The performance doesn’t end when the eyes start to bleed.">
 <span class="ch-k">CH 03</span><span class="ch-n">Nickolazei</span>
 </button>
 <button type="button" class="ch-btn" role="tab" data-ch="CH 04" data-title="Project Dark" data-genre="Zombie romance" data-loop="media/dark_loop.mp4" data-poster="media/dark_poster.jpg" data-pv="pv-dark" data-log="They remember who they were, at the end of the world.">
@@ -573,7 +573,7 @@ header{z-index:20;gap:16px}
 <button type="button" class="ch-btn" role="tab" data-ch="CH 05" data-title="Nov 3 1985" data-genre="Found footage" data-loop="media/ff_loop.mp4" data-poster="media/ff_poster.jpg" data-pv="pv-ff" data-log="Found footage from a week that shouldn’t exist. The tape keeps recording.">
 <span class="ch-k">CH 05</span><span class="ch-n">Nov 3 1985</span>
 </button>
-<button type="button" class="ch-btn" role="tab" data-ch="CH 06" data-title="The Architect" data-genre="Fashion film · starring Regina" data-loop="media/arch_loop.mp4" data-poster="media/arch_poster.jpg" data-log="Fashion becomes a story of power, devotion, and the cost of winning.">
+<button type="button" class="ch-btn is-on" role="tab" aria-selected="true" data-ch="CH 06" data-title="The Architect" data-genre="Fashion film · starring Regina" data-loop="media/arch_loop.mp4" data-poster="media/arch_poster.jpg" data-log="Fashion becomes a story of power, devotion, and the cost of winning.">
 <span class="ch-k">CH 06</span><span class="ch-n">The Architect</span>
 </button>
 <button type="button" class="ch-btn" role="tab" data-ch="CH 07" data-title="The Space Between Us" data-genre="Psychological sci-fi romance" data-loop="media/space_loop.mp4" data-poster="media/space_poster.jpg" data-pv="pv-space" data-log="Two people, one city, and the distance between stars.">
@@ -591,15 +591,15 @@ header{z-index:20;gap:16px}
 </div>
 <div class="crt-set">
 <div class="crt-bezel">
-<video id="ch-vid" muted loop playsinline preload="none" poster="media/nk_poster.jpg" data-lazy aria-label="Channel preview"></video>
+<video id="ch-vid" muted loop playsinline preload="none" poster="media/arch_poster.jpg" data-lazy aria-label="Channel preview"></video>
 <div class="ch-static" aria-hidden="true"></div>
-<div class="ch-bug"><span id="ch-num">CH 03</span></div>
+<div class="ch-bug"><span id="ch-num">CH 06</span></div>
 </div>
 <div class="crt-meta">
-<div class="eyebrow" id="ch-genre">Body horror</div>
-<h3 id="ch-title">Nickolazei</h3>
-<p id="ch-log">A body-horror ballet. The performance doesn’t end when the eyes start to bleed.</p>
-<button type="button" class="button ch-play-inline" id="ch-play">Watch preview</button>
+<div class="eyebrow" id="ch-genre">Fashion film · starring Regina</div>
+<h3 id="ch-title">The Architect</h3>
+<p id="ch-log">Fashion becomes a story of power, devotion, and the cost of winning.</p>
+<button type="button" class="button ch-play-inline" id="ch-play" hidden>Watch preview</button>
 </div>
 </div>
 
@@ -1092,7 +1092,7 @@ header{z-index:20;gap:16px}
   var tuneTimer=null;
   function tune(btn){
     if(!btn||!chVid) return;
-    buttons.forEach(function(b){b.classList.toggle('is-on',b===btn)});
+    buttons.forEach(function(b){b.classList.toggle('is-on',b===btn);b.setAttribute('aria-selected',String(b===btn))});
     if(bezel) bezel.classList.add('is-tuning');
     clearTimeout(tuneTimer);
     var apply=function(){
@@ -1115,7 +1115,7 @@ header{z-index:20;gap:16px}
     tuneTimer=setTimeout(apply, reduce?0:180);
   }
   buttons.forEach(function(b){b.addEventListener('click',function(){tune(b)})});
-  if(buttons[0]) tune(buttons[0]);
+  tune(document.querySelector('.ch-btn.is-on')||buttons[0]);
   if(chPlay) chPlay.addEventListener('click',function(){
     var id=chPlay.dataset.pv, tp=id&&document.getElementById(id);
     if(!tp) return;
