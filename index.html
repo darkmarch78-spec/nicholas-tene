@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nicholas Tene — Fashion, Beauty &amp; Story Films</title>
+<style>
+:root{--ink:#0e0d0d;--paper:#eee9e0;--dim:#aaa199;--gold:#c6a982;--rule:#ffffff24;--serif:Georgia,'Times New Roman',serif;--sans:Arial,Helvetica,sans-serif}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--paper);font-family:var(--sans)}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+header{height:72px;padding:0 5vw;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--rule);position:sticky;top:0;background:#0e0d0df2;backdrop-filter:blur(14px);z-index:5}
+.brand{font-size:11px;font-weight:bold;letter-spacing:.24em}
+.nav{display:flex;gap:28px;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#b8b0a7}
+.nav a:hover{color:var(--gold)}
+.hero{min-height:650px;max-width:1500px;margin:auto;padding:55px 5vw 65px;display:grid;grid-template-columns:1.02fr .98fr;align-items:center;gap:5vw}
+.kicker,.eyebrow{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold)}
+h1,h2,h3{font-family:var(--serif);font-weight:400}
+h1{font-size:clamp(64px,8vw,118px);line-height:.91;letter-spacing:-.065em;margin:25px 0 23px;max-width:720px}
+h1 em{font-weight:400;color:#b7a28b}
+.hero-copy>p{max-width:500px;color:#c2bbb2;font-size:14px;line-height:1.8}
+.actions{display:flex;gap:13px;margin-top:32px}
+.button{display:inline-flex;align-items:center;min-height:43px;padding:0 17px;border:1px solid #d5c2a180;font-size:9px;letter-spacing:.16em;text-transform:uppercase}
+.button.primary{background:var(--paper);color:#171411;border-color:var(--paper)}
+.button:hover{background:var(--gold);border-color:var(--gold);color:#14110e}
+.hero-art{height:450px;display:grid;grid-template-columns:1.1fr .78fr .9fr;gap:8px;position:relative}
+.frame{position:relative;overflow:hidden;background:#25201e}
+.frame:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#0000 45%,#0808089c)}
+.frame.one{background:radial-gradient(ellipse at 52% 30%,#876e5b 0 11%,transparent 12%),radial-gradient(ellipse at 50% 60%,#312725 0 26%,transparent 27%),linear-gradient(155deg,#5d5149,#171618 72%)}
+.frame.two{margin-top:54px;background:radial-gradient(ellipse at 50% 31%,#d3c6b3 0 10%,transparent 11%),radial-gradient(ellipse at 48% 62%,#6b554d 0 25%,transparent 26%),linear-gradient(165deg,#9d796e,#302223 66%,#101012)}
+.frame.three{margin-top:20px;background:radial-gradient(ellipse at 50% 28%,#a99c90 0 10%,transparent 11%),radial-gradient(ellipse at 52% 60%,#211e1c 0 27%,transparent 28%),linear-gradient(155deg,#655a50,#171617 67%)}
+.frame img,.frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.88)}
+.frame.one img{object-position:54% 28%}
+.frame.two img,.frame.two video{object-position:50% 50%}
+.frame.three img{object-position:50% 38%}
+.frame .caption{position:absolute;z-index:1;left:12px;right:12px;bottom:12px;font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:#eee0ce}
+.placeholder-note{position:absolute;top:12px;left:12px;z-index:1;padding:7px 8px;background:#100f0dcc;font-size:7px;letter-spacing:.13em;text-transform:uppercase;color:#ddd0c0}
+.hero-art:before{content:"DARK MARCH · SELECTED VISUAL WORLDS";position:absolute;z-index:2;left:0;right:0;bottom:-25px;text-align:center;color:#80766d;font-size:7px;letter-spacing:.18em}
+.section{padding:90px 5vw;max-width:1500px;margin:auto}
+.section-top{display:flex;align-items:end;justify-content:space-between;gap:25px;border-top:1px solid #ffffff39;padding-top:20px;margin-bottom:32px}
+.section-top h2{font-size:clamp(44px,6vw,82px);letter-spacing:-.05em;margin:9px 0 0}
+.section-top p{font-size:12px;line-height:1.7;color:var(--dim);max-width:340px;margin:0}
+.architect{display:grid;grid-template-columns:1.28fr .72fr;gap:38px;align-items:center}
+.feature-art{min-height:410px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 36%,#c2a17a 0 8%,transparent 8.5%),radial-gradient(ellipse at 48% 67%,#261e1b 0 20%,transparent 21%),radial-gradient(ellipse at 55% 76%,#78624c 0 35%,transparent 36%),linear-gradient(140deg,#4a403a,#111012 72%)}
+.feature-art>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 28%;filter:saturate(.86)}
+.feature-art:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,#0909092e,#09090988),linear-gradient(0deg,#0808088a,transparent 60%)}
+.feature-art .poster-mark{z-index:2;position:absolute;top:22px;left:24px;font:italic 58px var(--serif);color:#f0e6d36b}
+.feature-art .frame-tag{position:absolute;z-index:2;left:22px;bottom:19px;font-size:8px;letter-spacing:.2em;color:#e3d6c5;text-transform:uppercase}
+.feature-copy h3{font-size:clamp(42px,5vw,68px);margin:10px 0 13px}
+.feature-copy p{color:#c0b8af;font-size:13px;line-height:1.8}
+.meta{margin-top:22px;font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.architect-world{display:grid;grid-template-columns:1fr .72fr 1fr;gap:10px;margin-top:18px}
+.architect-world figure{position:relative;aspect-ratio:5/4;margin:0;overflow:hidden;background:#171412}
+.architect-world img{width:100%;height:100%;object-fit:cover;filter:saturate(.78) contrast(1.03);transition:transform .8s ease}
+.architect-world figure:nth-child(2) img{object-position:center 24%}
+.architect-world figure:hover img{transform:scale(1.025)}
+.architect-world figcaption{position:absolute;left:0;right:0;bottom:0;padding:32px 13px 11px;background:linear-gradient(transparent,#080707d9);font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:#eadfce}
+.beauty{display:grid;grid-template-columns:.75fr 1.25fr;gap:38px;align-items:center;margin-top:95px}
+.beauty .feature-art{order:2;background:radial-gradient(ellipse at 60% 37%,#d8b8a5 0 13%,transparent 14%),radial-gradient(ellipse at 56% 69%,#a0786c 0 24%,transparent 25%),linear-gradient(130deg,#90776b,#352622 56%,#111012)}
+.beauty .feature-copy{order:1}
+.beauty .feature-art .poster-mark{left:auto;right:24px}
+.story{background:#171514;max-width:none}
+.story-inner{max-width:1500px;margin:auto;padding:90px 5vw}
+.story-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.story-card{min-height:330px;display:flex;flex-direction:column;justify-content:space-between;padding:18px;background:linear-gradient(155deg,#39302a,#141214 65%);position:relative;overflow:hidden}
+.story-card:nth-child(2){background:linear-gradient(150deg,#41343a,#141214 67%)}
+.story-card:nth-child(3){background:linear-gradient(145deg,#483b2b,#161314 67%)}
+.story-card:before{content:"";position:absolute;width:180px;height:230px;border:1px solid #c8ac8750;border-radius:48% 48% 4% 4%;right:16%;top:28px;transform:rotate(6deg);opacity:.45}
+.story-card:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#0a0909ef,transparent 72%)}
+.story-card>*{position:relative;z-index:1}
+.story-card .story-bg{position:absolute;z-index:0;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(.78);transition:transform .8s ease}
+.story-card:hover .story-bg{transform:scale(1.035)}
+.story-card.wide{grid-column:1/-1;min-height:0;aspect-ratio:16/9}
+.story-card video.story-bg{filter:saturate(.85)}
+.story-grid{grid-template-columns:repeat(12,1fr)}
+.story-card{grid-column:span 3}
+.story-card.wide{grid-column:1/-1}
+.story-card.trio{grid-column:span 4}
+.story-card[data-pv]{cursor:pointer}
+.story-card .pv-btn{font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);border:1px solid #c8ac8780;padding:7px 10px;white-space:nowrap}
+.story-card[data-pv]:hover .pv-btn{background:var(--gold);color:#0b0a09}
+.story-card .soon{font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#8d847a;white-space:nowrap}
+#pv{border:0;padding:0;background:transparent;max-width:92vw;max-height:90vh}
+#pv::backdrop{background:#050404e8}
+#pv video{display:block;max-width:92vw;max-height:84vh;background:#000}
+#pv .pv-top{display:flex;justify-content:space-between;align-items:center;color:#eadfce;font-size:9px;letter-spacing:.2em;text-transform:uppercase;padding:0 0 10px}
+#pv button{background:none;border:1px solid #c8ac8780;color:#eadfce;font-size:9px;letter-spacing:.2em;text-transform:uppercase;padding:7px 11px;cursor:pointer}
+.story-card .no{font-size:8px;letter-spacing:.2em;color:var(--gold)}
+.story-card h3{font-size:35px;margin:0 0 8px}
+.story-card p{max-width:290px;color:#c4bbb2;font-size:11px;line-height:1.65;margin:0}
+.story-card .card-bottom{display:flex;justify-content:space-between;align-items:end}
+.range{background:#11100f;padding:82px 5vw}
+.range-inner{max-width:1500px;margin:auto}
+.range-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:13px}
+.range-grid figure{margin:0;position:relative;aspect-ratio:4/5;overflow:hidden;background:#211f1d}
+.range-grid video,.range-pair video{width:100%;height:100%;object-fit:cover;display:block}
+.range-grid img{width:100%;height:100%;object-fit:cover;filter:saturate(.82);transition:transform .8s ease}
+.range-grid figure:hover img{transform:scale(1.035)}
+.range-pair{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:13px}
+.range-pair figure{margin:0;position:relative;aspect-ratio:1/1;overflow:hidden;background:#211f1d}
+.range-pair img{width:100%;height:100%;object-fit:cover;object-position:center 20%;filter:saturate(.9);transition:transform .8s ease}
+.range-pair figure:hover img{transform:scale(1.035)}
+.range-pair figcaption{position:absolute;left:0;right:0;bottom:0;padding:38px 17px 15px;background:linear-gradient(transparent,#070707d9);font:italic 22px var(--serif);color:#eee5d9}
+@media(max-width:760px){.range-pair{gap:9px;margin-top:9px}.range-pair figcaption{font-size:16px;padding:28px 12px 11px}}
+.range-grid figcaption{position:absolute;left:0;right:0;bottom:0;padding:38px 17px 15px;background:linear-gradient(transparent,#070707d9);font:italic 22px var(--serif);color:#eee5d9}
+.process{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.process h2{font-size:clamp(48px,6vw,80px);line-height:1;margin:12px 0 18px}
+.process p{max-width:520px;color:#bcb4aa;font-size:13px;line-height:1.8}
+.steps{border-top:1px solid var(--rule)}
+.steps div{display:flex;justify-content:space-between;gap:15px;padding:15px 0;border-bottom:1px solid var(--rule);font-size:9px;letter-spacing:.12em;text-transform:uppercase}
+.steps span:first-child{color:#93877b}
+.about{background:#171514;max-width:none}
+.about-inner{max-width:1500px;margin:auto;padding:80px 5vw;display:grid;grid-template-columns:.75fr 1.25fr;gap:40px;align-items:center}
+.about h2{font-size:clamp(42px,5vw,68px);margin:10px 0}
+.about p{color:#c1b8af;font-size:13px;line-height:1.85;max-width:670px}
+.contact{padding:95px 5vw 70px;max-width:1500px;margin:auto}
+.contact h2{font-size:clamp(55px,9vw,120px);line-height:.94;letter-spacing:-.06em;margin:15px 0}
+.contact p{color:#bdb4aa;font-size:13px;line-height:1.8;max-width:520px}
+.contact .button{margin-top:19px}
+footer{border-top:1px solid var(--rule);padding:22px 5vw;display:flex;justify-content:space-between;gap:15px;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:#92887e}
+.footer-right{display:flex;gap:18px}
+.steps div{align-items:flex-start}
+.steps .step-text .step-name{color:var(--paper)}
+.steps .step-text{display:flex;flex-direction:column;gap:7px;flex:1}
+.steps .step-desc{text-transform:none;letter-spacing:.01em;font-size:12px;line-height:1.55;color:#a39a91}
+.about .tagline{font:italic 18px var(--serif);color:var(--gold);margin:0;letter-spacing:.01em}
+.story-card .story-bg.dim{filter:saturate(.7) brightness(.62)}
+.contact-form{margin-top:42px;max-width:640px;display:grid;gap:16px;border-top:1px solid var(--rule);padding-top:30px}
+.contact-form .field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.contact-form label{display:grid;gap:8px}
+.contact-form label>span{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.contact-form input,.contact-form textarea{width:100%;background:#171514;border:1px solid #ffffff2e;color:var(--paper);font:14px/1.6 var(--sans);padding:12px 14px;border-radius:0;outline:none;resize:vertical}
+.contact-form input:focus,.contact-form textarea:focus{border-color:var(--gold)}
+.contact-form textarea::placeholder{color:#6f6861}
+.contact-form button{justify-self:start;cursor:pointer;margin-top:4px}
+.tiny{margin-top:18px;color:#716a63;font-size:8px;letter-spacing:.08em;line-height:1.5}
+
+@media(max-width:800px){header{height:62px;padding:0 6vw}
+.nav{gap:12px;font-size:7px}
+.hero{grid-template-columns:1fr;padding:60px 6vw 70px;gap:30px;min-height:auto}
+.hero-art{height:320px;grid-row:1}
+.hero-copy{grid-row:2}
+.hero-art:before{font-size:6px}
+.section{padding:65px 6vw}
+.section-top{display:block}
+.section-top p{margin-top:12px}
+.architect,.beauty{grid-template-columns:1fr;gap:22px;margin-top:50px}
+.architect-world{grid-template-columns:1fr 1fr;margin-top:10px}
+.architect-world figure{aspect-ratio:4/3}
+.architect-world figure:last-child{grid-column:1/-1;aspect-ratio:16/9}
+.beauty .feature-art,.beauty .feature-copy{order:initial}
+.feature-art{min-height:300px}
+.story-inner{padding:65px 6vw}
+.range{padding:65px 6vw}
+.range-grid{grid-template-columns:1fr 1fr;gap:9px}
+.range-grid figure:last-child{display:none}
+.story-grid{grid-template-columns:1fr}
+.story-card,.story-card.wide,.story-card.trio{grid-column:auto}
+.story-card{min-height:255px}
+.process,.about-inner{grid-template-columns:1fr;gap:20px}
+.about-inner{padding:65px 6vw}
+.contact{padding:70px 6vw}
+.footer-right{gap:10px}
+.contact-form .field-row{grid-template-columns:1fr}
+}
+
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}
+}
+
+.sig{max-width:1500px;margin:auto;padding:40px 5vw 70px;display:grid;grid-template-columns:.9fr 1.1fr;gap:5vw;align-items:center;border-top:1px solid var(--rule)}
+.sig-media{aspect-ratio:1/1;overflow:hidden;position:relative;box-shadow:0 30px 80px #000a}
+.sig-media video{width:100%;height:100%;object-fit:cover;display:block}
+.sig-copy h2{font:italic 400 clamp(34px,4.2vw,62px)/1.05 var(--serif);color:var(--gold);margin:14px 0 18px}
+.sig-copy p{max-width:460px;color:#c2bbb2;font-size:14px;line-height:1.8}
+.sig-creds{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin:8px 0 0}
+.contact-links{display:flex;flex-wrap:wrap;gap:18px;margin-top:22px;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.contact-links a:hover,.footer-right a:hover{color:var(--paper)}
+@media(max-width:820px){.sig{grid-template-columns:1fr;padding:30px 6vw 60px;gap:28px}.contact-links{gap:14px}}
+</style>
+</head>
+<body>
+<header>
+<a class="brand" href="#top">NICHOLAS TENE</a>
+<nav class="nav">
+<a href="#work">Selected work</a>
+<a href="#stories">Stories</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+<main id="top">
+<section class="hero">
+<div class="hero-copy">
+<div class="kicker">Fashion · Beauty · Story Film</div>
+<h1>Lead beautiful,<br>
+<em>then break it.</em>
+</h1>
+<p>Fashion and beauty films with a cinematic edge—written, directed, and built frame by frame.</p>
+<div class="actions">
+<a class="button primary" href="#work">Watch the films</a>
+<a class="button" href="mailto:nicholastene@gmail.com?subject=New%20project%20inquiry">Start a project</a>
+</div>
+</div>
+<div class="hero-art" aria-label="Selected frames from Nicholas Tene’s fashion and story films">
+<div class="frame one">
+<img src="media/4cd9ebe2.jpg" alt="Regina in crystalline pink couture, framed by her otherworldly court">
+<span class="placeholder-note">REGINA</span>
+<span class="caption">The close-up</span>
+</div>
+<div class="frame two">
+<video autoplay muted loop playsinline preload="metadata" poster="media/cf110cf2.jpg" aria-label="A black mirrored couture face slowly transforming">
+<source src="media/ebfef80d.mp4" type="video/mp4">
+</video>
+<span class="placeholder-note">TRANSFORMATION</span>
+<span class="caption">The fracture</span>
+</div>
+<div class="frame three">
+<img src="media/d240bd7b.jpg" alt="Three gold ceremonial figures in sculptural couture">
+<span class="placeholder-note">VISUAL WORLDS</span>
+<span class="caption">The surreal turn</span>
+</div>
+</div>
+</section>
+<section class="sig" aria-label="Signature transformation">
+<div class="sig-media"><video autoplay muted loop playsinline preload="auto" poster="media/baac65ef.jpg"><source src="media/a9a1ee77.mp4" type="video/mp4"></video></div>
+<div class="sig-copy">
+<div class="eyebrow">Nicholas Tene · AI Cinema · Brooklyn</div>
+<div class="sig-creds">SAG-AFTRA · Strasberg · Directing with AI</div>
+<h2>Actor-trained.<br>Machine-made.</h2>
+<p>Beauty that turns. Every film starts with an actor’s instinct for the moment something human becomes something else.</p>
+</div>
+</section>
+<section class="section" id="work">
+<div class="section-top">
+<div>
+<div class="eyebrow">01 / Featured film</div>
+<h2>The Architect</h2>
+</div>
+<p>Fashion becomes a story of power, devotion, and the cost of winning.</p>
+</div>
+<article class="architect">
+<div class="feature-art">
+<img src="media/8603ab75.jpg" alt="Regina’s court assembled beneath neon light">
+<span class="poster-mark">A</span>
+<span class="frame-tag">The Architect · Fashion film · 1:00 · 9:16</span>
+</div>
+<div class="feature-copy">
+<div class="eyebrow">The Architect · starring Regina</div>
+<h3>An apology<br>in couture.</h3>
+<p>At the end of the world, Regina, the most powerful being in the universe, turns a runway into an apology. Her son arrives with an army. The show goes on.</p>
+<div class="meta">Written and directed by Nicholas Tene</div>
+</div>
+</article>
+<div class="architect-world" aria-label="The Architect visual world">
+<figure>
+<img src="media/e3306977.jpg" alt="A pale couture figure beside a winged metallic skull">
+<figcaption>Devotion</figcaption>
+</figure>
+<figure>
+<img src="media/a24e43a3.jpg" alt="Two pale pink figures joined by sculptural couture">
+<figcaption>Multiplicity</figcaption>
+</figure>
+<figure>
+<img src="media/1692afb3.jpg" alt="A black-and-gold armored couture figure">
+<figcaption>Dominion</figcaption>
+</figure>
+</div>
+<article class="beauty">
+<div class="feature-art">
+<img src="media/c2f0112f.jpg" alt="A beauty portrait suspended in water and glitter">
+<span class="poster-mark">B</span>
+<span class="frame-tag">Beauty film</span>
+</div>
+<div class="feature-copy">
+<div class="eyebrow">Beauty campaign</div>
+<h3>Skin, light,<br>and texture.</h3>
+<p>An intimate beauty film with a touch of the unreal—close details and shifting light, landing on a single unforgettable face.</p>
+<div class="meta">Beauty film · AI-assisted</div>
+</div>
+</article>
+</section>
+<section class="story" id="stories">
+<div class="story-inner">
+<div class="section-top">
+<div>
+<div class="eyebrow">02 / Narrative films and visual experiments</div>
+<h2>Then break it.</h2>
+</div>
+<p>Where fashion becomes character, myth, and trouble.</p>
+</div>
+<div class="story-grid">
+<article class="story-card" data-pv="pv-toy" data-title="The Toy Maker">
+<video class="story-bg" autoplay muted loop playsinline poster="media/toy_poster.jpg" aria-label="An old toy maker at his bench as rain falls outside"><source src="media/toy_bg.mp4" type="video/mp4"></video>
+<div class="no">01 / TRAILER · 0:47 · 9:16</div>
+<div class="card-bottom">
+<div>
+<h3>The Toy Maker</h3>
+<p>One man leaves. The other keeps the workshop—and waits for decades.</p>
+</div>
+<span class="pv-btn">▶ Preview</span>
+</div>
+</article>
+<article class="story-card" data-pv="pv-mesh" data-title="The Mesh">
+<video class="story-bg" autoplay muted loop playsinline poster="media/6d659502.jpg" aria-label="A sequin top on a hanger opens a giant eye"><source src="media/e3e36fec.mp4" type="video/mp4"></video>
+<div class="no">02 / SHORT FILM · 1:14 · 9:16</div>
+<div class="card-bottom">
+<div>
+<h3>The Mesh</h3>
+<p>A sequin top on a wire hanger. It opens its eyes. Then he puts it on.</p>
+</div>
+<span class="pv-btn">▶ Preview</span>
+</div>
+</article>
+<article class="story-card" data-pv="pv-plumage" data-title="Plumage · The Black Swan">
+<img class="story-bg" src="media/a4352fc5.jpg" alt="A male ballet dancer transforms amid a storm of white feathers">
+<div class="no">03 / BALLET FILM · 0:47</div>
+<div class="card-bottom">
+<div>
+<h3>Plumage</h3>
+<p>A dancer becomes the role in the middle of a performance—beautiful, physical, and slightly dangerous.</p>
+</div>
+<span class="pv-btn">▶ Preview</span>
+</div>
+</article>
+<article class="story-card" data-pv="pv-harvest" data-title="Dead Harvest">
+<video class="story-bg" autoplay muted loop playsinline poster="media/0df91545.jpg" aria-label="A horde marches up a driveway toward a cabin at night"><source src="media/0c760dcc.mp4" type="video/mp4"></video>
+<div class="no">04 / TRAILER · 1:25 · 9:16</div>
+<div class="card-bottom">
+<div>
+<h3>Dead Harvest</h3>
+<p>A son comes home for the weekend. His dad says he shouldn't have come.</p>
+</div>
+<span class="pv-btn">▶ Preview</span>
+</div>
+</article>
+<article class="story-card wide" data-pv="pv-walk" data-title="Walk for Me">
+<video class="story-bg" autoplay muted loop playsinline preload="auto" poster="media/3bf3e2da.jpg" aria-label="A model in gold couture dives on the runway to stop a glowing dart"><source src="media/adbd32ae.mp4" type="video/mp4"></video>
+<div class="no">05 / FASHION ACTION · 0:29 · 16:9</div>
+<div class="card-bottom">
+<div>
+<h3>Walk for Me</h3>
+<p>A dart from the shadows. She catches it in couture, hits the floor, and smiles.</p>
+</div>
+<span class="pv-btn">▶ Preview</span>
+</div>
+</article>
+<article class="story-card trio">
+<img class="story-bg" src="media/f76c52a0.jpg" alt="A silhouette standing on a dark stage before a brightly lit empty hall">
+<div class="no">06 / ONE-ROOM DRAMA</div>
+<div class="card-bottom">
+<div>
+<h3>The Audition</h3>
+</div>
+<span class="soon">Preview soon</span>
+</div>
+</article>
+<article class="story-card trio">
+<img class="story-bg" src="media/8f853c5b.jpg" alt="A figure in a fringed jacket suspended above a New York street and yellow taxis">
+<div class="no">07 / EDITORIAL FILM · 9:16</div>
+<div class="card-bottom">
+<div>
+<h3>Rush Hour</h3>
+</div>
+<span class="soon">Preview soon</span>
+</div>
+</article>
+<article class="story-card trio">
+<img class="story-bg" src="media/ad01e227.jpg" alt="A close portrait of a long-haired figure with a marked face and fangs">
+<div class="no">08 / SHORT FILM · 1:45</div>
+<div class="card-bottom">
+<div>
+<h3>I Remember Everyone</h3>
+</div>
+<span class="soon">Preview soon</span>
+</div>
+</article>
+</div>
+</div>
+</section>
+<section class="range" id="range">
+<div class="range-inner">
+<div class="section-top">
+<div>
+<div class="eyebrow">03 / Visual range</div>
+<h2>Other worlds.</h2>
+</div>
+<p>Creature couture, beauty, and images that leave a little mystery in the frame.</p>
+</div>
+<div class="range-grid">
+<figure>
+<video autoplay muted loop playsinline preload="auto" poster="media/3bba10a8.jpg" aria-label="An alien couture portrait with biomechanical detail beneath the skin"><source src="media/0bf8d84d.mp4" type="video/mp4"></video>
+<figcaption>Creature couture</figcaption>
+</figure>
+<figure>
+<img src="media/dfa55cc4.jpg" alt="A beauty model framed by a glossy green sculptural form">
+<figcaption>Beauty, transformed</figcaption>
+</figure>
+<figure>
+<img src="media/a4d44bd6.jpg" alt="A woman in a dark forest before a spectral, antlered figure">
+<figcaption>Story worlds</figcaption>
+</figure>
+</div>
+<div class="range-pair">
+<figure>
+<video autoplay muted loop playsinline preload="auto" poster="media/77fc6003.jpg" aria-label="Slow push-in on a model in gold couture before white bone sculptures"><source src="media/bd4ebbb5.mp4" type="video/mp4"></video>
+<figcaption>Gold and bone</figcaption>
+</figure>
+<figure>
+<img src="media/e0b79947.jpg" alt="A short-haired model in gilded armor-like couture among woven white tendrils">
+<figcaption>Gilded armor</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="process">
+<div>
+<div class="eyebrow">03 / What a brand gets</div>
+<h2>A visual world<br>that holds.</h2>
+<p>I build each project from a clear visual direction, then carry the character, styling, and light through the finished film.</p>
+</div>
+<div class="steps">
+<div>
+<span>01</span>
+<span class="step-text"><span class="step-name">Direction</span><span class="step-desc">A clear concept, mood, and story built around your collection.</span></span>
+<span>↗</span>
+</div>
+<div>
+<span>02</span>
+<span class="step-text"><span class="step-name">Character & styling</span><span class="step-desc">Consistent faces, wardrobe, and looks carried through every shot.</span></span>
+<span>↗</span>
+</div>
+<div>
+<span>03</span>
+<span class="step-text"><span class="step-name">Shot design & motion</span><span class="step-desc">Cinematic framing and movement, designed frame by frame.</span></span>
+<span>↗</span>
+</div>
+<div>
+<span>04</span>
+<span class="step-text"><span class="step-name">Edit, sound & grade</span><span class="step-desc">A finished film with edit, sound design, and color, ready to post.</span></span>
+<span>↗</span>
+</div>
+</div>
+</div>
+</section>
+<section class="about" id="about">
+<div class="about-inner">
+<div>
+<div class="eyebrow">04 / About</div>
+<h2>Nicholas Tene</h2>
+<p class="tagline">Actor-trained. Machine-made.</p>
+</div>
+<div>
+<p>Nicholas Tene. Actor, SAG-AFTRA, trained at the Lee Strasberg Theatre &amp; Film Institute. Directing with AI in New York.</p>
+<p>New York–based filmmaker, actor, and AI creative. A SAG-AFTRA performer trained at the Lee Strasberg Theatre &amp; Film Institute, he brings a performer’s attention to gesture and emotion to fashion films and original stories.</p>
+</div>
+</div>
+</section>
+<section class="contact" id="contact">
+<div class="eyebrow">05 / Collaborate</div>
+<h2>Have a collection<br>that needs a film?</h2>
+<p>Tell me what you’re building. I create fashion and beauty campaigns, runway films, and original stories.</p>
+<a class="button primary" href="mailto:nicholastene@gmail.com?subject=New%20project%20inquiry">Start a project ↗</a>
+<div class="contact-links">
+<a href="mailto:nicholastene@gmail.com">nicholastene@gmail.com</a>
+<a href="https://www.instagram.com/dark_march/">Instagram @DARK_MARCH</a>
+<a href="https://www.tiktok.com/@darkmarch4">TikTok @darkmarch4</a>
+</div>
+<form class="contact-form" action="mailto:nicholastene@gmail.com?subject=New%20project%20inquiry" method="post" enctype="text/plain">
+<div class="field-row">
+<label><span>Name</span><input type="text" name="name" autocomplete="name" required></label>
+<label><span>Email</span><input type="email" name="email" autocomplete="email" required></label>
+</div>
+<label><span>Brand or project</span><input type="text" name="brand_or_project"></label>
+<label><span>Message</span><textarea name="message" rows="5" placeholder="Tell me about the collection, timeline, and where the film will live." required></textarea></label>
+<button class="button primary" type="submit">Send ↗</button>
+</form>
+</section>
+</main>
+<footer>
+<span>© 2026 Nicholas Tene · New York City</span>
+<span class="footer-right">
+<a href="mailto:nicholastene@gmail.com">Email</a>
+<a href="https://www.instagram.com/dark_march/">Instagram</a>
+<a href="https://www.tiktok.com/@darkmarch4">TikTok</a>
+</span>
+</footer>
+<template id="pv-toy"><source src="media/toy_prev.mp4" type="video/mp4"></template>
+<template id="pv-mesh"><source src="media/68a4fcd5.mp4" type="video/mp4"></template>
+<template id="pv-plumage"><source src="media/566359c7.mp4" type="video/mp4"></template>
+<template id="pv-harvest"><source src="media/0fa1526d.mp4" type="video/mp4"></template>
+<template id="pv-walk"><source src="media/04d5a62d.mp4" type="video/mp4"></template>
+<dialog id="pv"><div class="pv-top"><span id="pv-title">Preview</span><button type="button" id="pv-close">Close ✕</button></div><video id="pv-video" controls playsinline></video></dialog>
+<script>
+(function(){var d=document.getElementById('pv'),v=document.getElementById('pv-video'),t=document.getElementById('pv-title');
+function close(){v.pause();v.innerHTML='';v.removeAttribute('src');v.load();if(d.open)d.close();}
+document.querySelectorAll('.story-card[data-pv]').forEach(function(c){c.addEventListener('click',function(){var tp=document.getElementById(c.dataset.pv);if(!tp)return;v.innerHTML='';v.appendChild(tp.content.cloneNode(true));v.load();t.textContent=(c.dataset.title||'')+' · Preview';d.showModal();var p=v.play();if(p&&p.catch)p.catch(function(){});});});
+document.getElementById('pv-close').addEventListener('click',close);
+d.addEventListener('click',function(e){if(e.target===d)close();});
+d.addEventListener('cancel',function(){v.pause();});d.addEventListener('close',function(){v.pause();});})();
+</script>
+</body>
+</html>
