@@ -439,10 +439,24 @@ header{z-index:20;gap:16px}
 /* Experiments */
 .exps{background:#141211;padding:70px 5vw}
 .exp-inner{max-width:1500px;margin:auto}
-.exp-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;max-width:1100px}
-.exp-card{position:relative;overflow:hidden;aspect-ratio:3/4;background:#1a1716}
+.exp-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;max-width:1100px}
+.exp-card.wide{grid-column:1/-1;aspect-ratio:16/9}
+.exp-card{position:relative;overflow:hidden;aspect-ratio:3/4;background:#1a1716;margin:0}
 .exp-card video,.exp-card img{width:100%;height:100%;object-fit:cover;display:block}
 .exp-card span{position:absolute;left:0;right:0;bottom:0;padding:24px 12px 10px;background:linear-gradient(transparent,#070707e8);font:italic 16px var(--serif)}
+.tap-play{
+  display:none;
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  z-index:4;margin:0;padding:9px 14px;
+  border:1px solid var(--gold);background:#0b0a09e6;color:var(--gold);
+  font:9px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;
+  cursor:pointer;pointer-events:auto;
+}
+.needs-tap>.tap-play{display:inline-block}
+@media(prefers-reduced-motion:reduce){
+  .tap-play{transform:translate(-50%,-50%)}
+}
+
 
 /* Also screening + gallery */
 .more{max-width:1500px;margin:auto;padding:70px 5vw 40px}
@@ -686,7 +700,7 @@ header{z-index:20;gap:16px}
 <div class="eyebrow">05 / Experiments</div>
 <h2>One-offs.</h2>
 </div>
-<p>Three tests that earned a second look. The rest stayed on the bench.</p>
+<p>Four one-offs, and a late-night loop. The rest stayed on the bench.</p>
 </div>
 <div class="exp-grid">
 <figure class="exp-card">
@@ -700,6 +714,14 @@ header{z-index:20;gap:16px}
 <figure class="exp-card">
 <video muted loop playsinline preload="none" data-lazy poster="media/exp_alley.jpg" aria-label="A shove in an alley cuts to a smiling portrait"><source src="media/exp_alley.mp4" type="video/mp4"></video>
 <span>The shove</span>
+</figure>
+<figure class="exp-card">
+<video muted loop playsinline preload="none" data-lazy poster="media/exp_crawl.jpg" aria-label="A body-horror centipede of human arms crawling through a parking garage"><source src="media/exp_crawl.mp4" type="video/mp4"></video>
+<span>The crawl</span>
+</figure>
+<figure class="exp-card wide">
+<video muted loop playsinline preload="none" data-lazy poster="media/exp_night.jpg" aria-label="Two women in gold satin on a purple couch among 1980s computers"><source src="media/exp_night.mp4" type="video/mp4"></video>
+<span>Night shift</span>
 </figure>
 </div>
 </div>
@@ -1016,13 +1038,47 @@ header{z-index:20;gap:16px}
   var reduce=false;
   try{reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){}
 
+  /* If muted autoplay is rejected (iPhone Low Power Mode), show a tap-to-play control.
+     Skip the showreel and preview dialog — they already have their own play buttons. */
+  function tapBox(v){
+    if(!v || v.id==='reel-vid' || v.id==='pv-video') return null;
+    return v.closest('figure, article.comm-card, .crt-bezel, .sig-media, .story-card') || v.parentElement;
+  }
+  function clearTap(v){
+    var box=tapBox(v);
+    if(box) box.classList.remove('needs-tap');
+  }
+  function markNeedsTap(v){
+    var box=tapBox(v);
+    if(!box) return;
+    box.classList.add('needs-tap');
+    if(box.querySelector('.tap-play')) return;
+    var b=document.createElement('button');
+    b.type='button';
+    b.className='tap-play';
+    b.setAttribute('aria-label','Play clip');
+    b.textContent='Play';
+    b.addEventListener('click',function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      v.muted=true;
+      var p=v.play();
+      if(p&&p.then) p.then(function(){ clearTap(v); }).catch(function(){});
+    });
+    box.appendChild(b);
+  }
+  function tryAutoplay(v){
+    var p=v.play();
+    if(p&&p.then) p.then(function(){ clearTap(v); }).catch(function(){ markNeedsTap(v); });
+  }
+
   /* Lazy play/pause — no offscreen playback, preload none already in markup */
   if('IntersectionObserver' in window){
     var vio=new IntersectionObserver(function(entries){
       entries.forEach(function(en){
         var v=en.target;
         if(v.dataset.hold==='1') return;
-        if(en.isIntersecting){var p=v.play(); if(p&&p.catch)p.catch(function(){})}
+        if(en.isIntersecting) tryAutoplay(v);
         else v.pause();
       });
     },{rootMargin:'180px 0px',threshold:0.12});
@@ -1101,7 +1157,7 @@ header{z-index:20;gap:16px}
       chVid.src=btn.dataset.loop;
       chVid.muted=true;
       chVid.dataset.hold='';
-      var p=chVid.play(); if(p&&p.catch)p.catch(function(){});
+      tryAutoplay(chVid);
       if(chNum) chNum.textContent=btn.dataset.ch||'';
       if(chTitle) chTitle.textContent=btn.dataset.title||'';
       if(chGenre) chGenre.textContent=btn.dataset.genre||'';
