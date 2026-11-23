@@ -302,6 +302,7 @@ html.fx-booted .hero-title.is-glitch{animation:title-glitch .38s steps(2,end)}
 /* Scroll reveals */
 .fx-reveal{opacity:0;transform:translateY(22px);transition:opacity .85s cubic-bezier(.16,.7,.2,1),transform .85s cubic-bezier(.16,.7,.2,1)}
 .fx-reveal.is-in{opacity:1;transform:none}
+section,[id]{scroll-margin-top:72px}
 
 /* Card 3D tilt + VHS sweep over media (hover / fine pointer only) */
 .fx-tilt{transform-style:preserve-3d;transition:transform .18s ease-out;will-change:transform}
@@ -336,8 +337,158 @@ html.fx-booted .hero-title.is-glitch{animation:title-glitch .38s steps(2,end)}
   .fx-reveal{opacity:1;transform:none;transition:none}
 }
 
+
+:root{--rose:#c98696;--rose-deep:#a45c70}
+.hero-title em{color:var(--rose);font-style:italic}
+.snd{
+  background:none;border:1px solid #c8ac8780;color:var(--gold);cursor:pointer;
+  font:8px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;
+  min-height:32px;padding:0 11px;white-space:nowrap
+}
+.snd[aria-pressed="true"]{background:var(--gold);color:#0b0a09;border-color:var(--gold)}
+header{z-index:20;gap:16px}
+.nav{align-items:center}
+
+/* Hero: Black Swan treatment */
+.hero.swan{min-height:calc(100svh - 72px);grid-template-columns:1fr 1.05fr;gap:4vw;align-items:stretch;padding:0 0 0 5vw;max-width:none}
+.hero.swan .hero-copy{display:flex;flex-direction:column;justify-content:center;padding:70px 0 80px;max-width:640px}
+.hero.swan .hero-by{font:italic 18px var(--serif);color:#d7cfc6;margin:0 0 10px}
+.hero.swan .hero-tag{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin:0 0 22px}
+.hero.swan .hero-study{margin-top:28px;font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#8a8178}
+.hero-art.swan-art{position:relative;height:auto;min-height:calc(100svh - 72px);display:block;grid-template-columns:none;overflow:hidden}
+.hero-art.swan-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 40%;filter:saturate(.92) contrast(1.05)}
+.hero-art.swan-art:before{display:none}
+.hero-art.swan-art:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#0e0d0d 0 2%,#0e0d0d00 22%),linear-gradient(180deg,#0e0d0d55 0 8%,transparent 28%)}
+
+/* Showreel in a CRT bezel */
+.reel{max-width:1500px;margin:auto;padding:70px 5vw 40px}
+.reel-frame{position:relative;background:#080808;aspect-ratio:3/4;max-width:560px;margin:0 auto;overflow:hidden;box-shadow:0 0 0 1px #c8ac8730,0 40px 90px #000c}
+.reel-frame video,.crt-bezel video{width:100%;height:100%;object-fit:cover;display:block;background:#000}
+.reel-play,.ch-play{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  background:#0b0a09e6;border:1px solid var(--gold);color:var(--gold);
+  font:9px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;
+  padding:14px 18px;cursor:pointer;z-index:2
+}
+.reel-frame.is-playing .reel-play{display:none}
+.reel-note{display:block;text-align:center;margin-top:14px;font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:#8a8178}
+
+/* CRT channel switcher */
+.broadcast{max-width:1500px;margin:auto;padding:50px 5vw 70px}
+.crt-set{display:grid;grid-template-columns:1.15fr .85fr;gap:36px;align-items:center}
+.crt-bezel{position:relative;aspect-ratio:4/5;background:#050505;overflow:hidden;box-shadow:0 0 0 1px #c8ac8730,0 30px 80px #000a}
+.crt-bezel.is-tuning .ch-static{opacity:.8}
+.ch-static{
+  position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .12s;
+  background:
+    repeating-linear-gradient(to bottom,rgba(255,255,255,.18) 0 1px,transparent 1px 3px),
+    #111;
+  mix-blend-mode:screen;z-index:2
+}
+.ch-bug{
+  position:absolute;top:14px;left:14px;z-index:3;
+  font:8px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:#c6a982;
+  background:#0008;padding:6px 8px
+}
+.crt-meta h3{font-size:clamp(36px,5vw,62px);margin:10px 0 14px;letter-spacing:-.04em}
+.crt-meta p{color:#c2bbb2;font-size:14px;line-height:1.75;max-width:420px}
+.crt-meta .button{margin-top:20px;cursor:pointer}
+.channel-bar{
+  display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;padding:22px 0 8px;margin-top:10px;
+  scrollbar-width:thin
+}
+.ch-btn{
+  flex:0 0 auto;scroll-snap-align:start;cursor:pointer;
+  background:#171514;border:1px solid #ffffff20;color:#c8bfb6;
+  min-width:148px;padding:12px 14px;text-align:left
+}
+.ch-btn .ch-k{display:block;font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.ch-btn .ch-n{display:block;font:italic 16px var(--serif);color:var(--paper)}
+.ch-btn.is-on{border-color:var(--gold);background:#221e1a}
+
+/* Architect film-strip */
+.look{background:#110f0e;padding:70px 0 80px}
+.look-inner{max-width:1500px;margin:auto;padding:0 5vw}
+.film-strip{
+  display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:18px 5vw 10px;margin:0 -5vw;
+  background:
+    repeating-linear-gradient(90deg,transparent 0 18px,#0a0a0a 18px 28px,transparent 28px 46px);
+  background-position:0 0;background-size:auto 8px;background-repeat:repeat-x
+}
+.film-strip figure{
+  flex:0 0 auto;margin:0;position:relative;overflow:hidden;scroll-snap-align:start;
+  width:min(280px,70vw);aspect-ratio:4/5;background:#1a1716
+}
+.film-strip figure.wide{width:min(420px,82vw);aspect-ratio:16/10}
+.film-strip img,.film-strip video{width:100%;height:100%;object-fit:cover;display:block}
+.film-strip figcaption{position:absolute;left:0;right:0;bottom:0;padding:28px 12px 10px;background:linear-gradient(transparent,#070707e0);font:italic 15px var(--serif);color:#eee5d9}
+.look-link{display:inline-block;margin-top:18px;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+
+/* Spec commercials */
+.comms{max-width:1500px;margin:auto;padding:70px 5vw}
+.comm-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.comm-card{position:relative;overflow:hidden;min-height:480px;display:flex;flex-direction:column;justify-content:flex-end;padding:20px;cursor:pointer}
+.comm-card video,.comm-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.comm-card:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 40%,#0a0909f0)}
+.comm-card>*{position:relative;z-index:1}
+.comm-card h3{font-size:36px;margin:0 0 8px}
+.comm-card p{color:#c4bbb2;font-size:13px;line-height:1.65;max-width:320px;margin:0}
+
+/* Experiments */
+.exps{background:#141211;padding:70px 5vw}
+.exp-inner{max-width:1500px;margin:auto}
+.exp-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;max-width:1100px}
+.exp-card{position:relative;overflow:hidden;aspect-ratio:3/4;background:#1a1716}
+.exp-card video,.exp-card img{width:100%;height:100%;object-fit:cover;display:block}
+.exp-card span{position:absolute;left:0;right:0;bottom:0;padding:24px 12px 10px;background:linear-gradient(transparent,#070707e8);font:italic 16px var(--serif)}
+
+/* Also screening + gallery */
+.more{max-width:1500px;margin:auto;padding:70px 5vw 40px}
+.gallery{max-width:1500px;margin:auto;padding:20px 5vw 80px}
+.gal-grid{columns:3;column-gap:12px}
+.gal-grid figure{margin:0 0 12px;break-inside:avoid;position:relative;overflow:hidden;background:#1a1716}
+.gal-grid img{width:100%;display:block;filter:saturate(.9)}
+
+@media(max-width:800px){
+  .hero.swan{grid-template-columns:1fr;padding:0;min-height:0;gap:0}
+  .hero-art.swan-art{min-height:62vh;grid-row:1}
+  .hero.swan .hero-copy{grid-row:2;padding:36px 6vw 50px}
+  .hero-art.swan-art:after{background:linear-gradient(180deg,transparent 60%,#0e0d0d 96%)}
+  .crt-set{grid-template-columns:1fr;gap:22px}
+  .crt-bezel{aspect-ratio:4/5}
+  .comm-grid,.exp-grid{grid-template-columns:1fr 1fr}
+  .comm-card{min-height:360px}
+  .gal-grid{columns:2}
+  .reel-frame{max-width:100%}
+  .snd{font-size:7px;padding:0 8px;min-height:28px}
+}
+@media(max-width:520px){
+  .exp-grid{grid-template-columns:1fr 1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  .crt-bezel.is-tuning .ch-static{opacity:0}
+  .reel-play,.ch-play{transform:none}
+}
+
+
+.comm-card .pv-btn{font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);border:1px solid #c8ac8780;padding:7px 10px;white-space:nowrap;margin-top:14px;align-self:flex-start}
+.comm-card .no{font-size:8px;letter-spacing:.2em;color:var(--gold);margin-bottom:auto}
+.ch-play-inline{cursor:pointer;margin-top:20px}
+.channel-bar::-webkit-scrollbar{height:4px}
+
+
+.crt-bezel{max-height:min(62vh,580px);width:100%;max-width:520px;aspect-ratio:4/5}
+.channel-bar{padding:6px 0 20px}
+@media(max-width:800px){
+  header{height:58px;padding:0 4vw}
+  .brand{font-size:9px;letter-spacing:.16em}
+  .nav{gap:8px}
+  .snd{letter-spacing:.12em}
+}
+
 </style>
-</head>
 <body>
 <div id="crt" aria-hidden="true" aria-label="Broadcast starting. Click or press any key to skip.">
 <div class="crt-beam"></div>
@@ -350,47 +501,52 @@ html.fx-booted .hero-title.is-glitch{animation:title-glitch .38s steps(2,end)}
 <header>
 <a class="brand" href="#top">NICHOLAS TENE</a>
 <nav class="nav">
-<a href="#work">Selected work</a>
-<a href="#stories">Stories</a>
+<a href="#reel">Reel</a>
+<a href="#films">Films</a>
 <a href="#about">About</a>
 <a href="#contact">Contact</a>
+<button type="button" class="snd" id="snd" aria-pressed="false" aria-label="Toggle ambient sound">Sound off</button>
 </nav>
 </header>
 <main id="top">
-<section class="hero">
+
+<section class="hero swan" aria-label="Nicholas Tene, filmmaker">
 <div class="hero-copy">
-<div class="kicker">Fashion · Beauty · Story Film</div>
-<h1 class="hero-title">Lead beautiful,<br>
-<em>then break it.</em>
+<div class="kicker">Dark March · AI Cinema · Brooklyn</div>
+<h1 class="hero-title">The work,<br>
+<em>in progress.</em>
 </h1>
-<p>Fashion and beauty films with a cinematic edge—written, directed, and built frame by frame.</p>
+<p class="hero-by">Nicholas Tene · Filmmaker</p>
+<p class="hero-tag">Actor-trained. Machine-made. · SAG-AFTRA · Strasberg</p>
+<p>Fashion, beauty, and story films with a cinematic edge—written, directed, and built frame by frame.</p>
 <div class="actions">
-<a class="button primary" href="#work">Watch the films</a>
+<a class="button primary" href="#reel">Watch the reel</a>
 <a class="button" href="mailto:nicholastene@gmail.com?subject=New%20project%20inquiry">Start a project</a>
 </div>
+<div class="hero-study">Black Swan · Concept study</div>
 </div>
-<div class="hero-art" aria-label="Selected frames from Nicholas Tene’s fashion and story films">
-<div class="frame one">
-<img src="media/4cd9ebe2.jpg" alt="Regina in crystalline pink couture, framed by her otherworldly court">
-<span class="placeholder-note">REGINA</span>
-<span class="caption">The close-up</span>
-</div>
-<div class="frame two">
-<video autoplay muted loop playsinline preload="metadata" poster="media/cf110cf2.jpg" aria-label="A black mirrored couture face slowly transforming">
-<source src="media/ebfef80d.mp4" type="video/mp4">
-</video>
-<span class="placeholder-note">TRANSFORMATION</span>
-<span class="caption">The fracture</span>
-</div>
-<div class="frame three">
-<img src="media/d240bd7b.jpg" alt="Three gold ceremonial figures in sculptural couture">
-<span class="placeholder-note">VISUAL WORLDS</span>
-<span class="caption">The surreal turn</span>
-</div>
+<div class="hero-art swan-art" aria-hidden="false">
+<img src="media/hero_swan.jpg" alt="A performer in a feathered costume draws back a theatre curtain toward a pink stage light">
 </div>
 </section>
+
+<section class="reel" id="reel">
+<div class="section-top">
+<div>
+<div class="eyebrow">01 / On air</div>
+<h2>Showreel</h2>
+</div>
+<p>Two minutes forty-seven. A cut of the films, the commercials, and the worlds in between.</p>
+</div>
+<div class="reel-frame">
+<video id="reel-vid" muted loop playsinline preload="none" poster="media/reel_poster.jpg" data-loop="media/reel_loop.mp4" data-full="media/reel_full.mp4" data-lazy aria-label="Showreel preview, looping silently"></video>
+<button type="button" class="reel-play" id="reel-play">Play reel · 2:47</button>
+</div>
+<span class="reel-note">Silent loop until you press play. Sound starts with the cut.</span>
+</section>
+
 <section class="sig" aria-label="Signature transformation">
-<div class="sig-media"><video autoplay muted loop playsinline preload="auto" poster="media/baac65ef.jpg"><source src="media/a9a1ee77.mp4" type="video/mp4"></video></div>
+<div class="sig-media"><video autoplay muted loop playsinline preload="none" data-lazy poster="media/baac65ef.jpg"><source src="media/a9a1ee77.mp4" type="video/mp4"></video></div>
 <div class="sig-copy">
 <div class="eyebrow">Nicholas Tene · AI Cinema · Brooklyn</div>
 <div class="sig-creds">SAG-AFTRA · Strasberg · Directing with AI</div>
@@ -398,79 +554,169 @@ html.fx-booted .hero-title.is-glitch{animation:title-glitch .38s steps(2,end)}
 <p>Beauty that turns. Every film starts with an actor’s instinct for the moment something human becomes something else.</p>
 </div>
 </section>
-<section class="section" id="work">
+
+<section class="broadcast" id="films">
 <div class="section-top">
 <div>
-<div class="eyebrow">01 / Featured film</div>
+<div class="eyebrow">02 / Transmission</div>
+<h2>Select a channel.</h2>
+</div>
+<p>A short wave across the films. Tune one, then preview it.</p>
+</div>
+<div class="channel-bar" role="tablist" aria-label="Film channels">
+<button type="button" class="ch-btn is-on" role="tab" aria-selected="true" data-ch="CH 03" data-title="Nickolazei" data-genre="Body horror" data-loop="media/nk_loop.mp4" data-poster="media/nk_poster.jpg" data-pv="pv-nk" data-log="A body-horror ballet. The performance doesn’t end when the eyes start to bleed.">
+<span class="ch-k">CH 03</span><span class="ch-n">Nickolazei</span>
+</button>
+<button type="button" class="ch-btn" role="tab" data-ch="CH 04" data-title="Project Dark" data-genre="Zombie romance" data-loop="media/dark_loop.mp4" data-poster="media/dark_poster.jpg" data-pv="pv-dark" data-log="They remember who they were, at the end of the world.">
+<span class="ch-k">CH 04</span><span class="ch-n">Project Dark</span>
+</button>
+<button type="button" class="ch-btn" role="tab" data-ch="CH 05" data-title="Nov 3 1985" data-genre="Found footage" data-loop="media/ff_loop.mp4" data-poster="media/ff_poster.jpg" data-pv="pv-ff" data-log="Found footage from a week that shouldn’t exist. The tape keeps recording.">
+<span class="ch-k">CH 05</span><span class="ch-n">Nov 3 1985</span>
+</button>
+<button type="button" class="ch-btn" role="tab" data-ch="CH 06" data-title="The Architect" data-genre="Fashion film · starring Regina" data-loop="media/arch_loop.mp4" data-poster="media/arch_poster.jpg" data-log="Fashion becomes a story of power, devotion, and the cost of winning.">
+<span class="ch-k">CH 06</span><span class="ch-n">The Architect</span>
+</button>
+<button type="button" class="ch-btn" role="tab" data-ch="CH 07" data-title="The Space Between Us" data-genre="Psychological sci-fi romance" data-loop="media/space_loop.mp4" data-poster="media/space_poster.jpg" data-pv="pv-space" data-log="Two people, one city, and the distance between stars.">
+<span class="ch-k">CH 07</span><span class="ch-n">The Space Between Us</span>
+</button>
+<button type="button" class="ch-btn" role="tab" data-ch="CH 08" data-title="Untitled UFO Short" data-genre="Trailer" data-loop="media/ufo_loop.mp4" data-poster="media/ufo_poster.jpg" data-pv="pv-ufo" data-log="A boy sees something in the sky. The night does not give him back.">
+<span class="ch-k">CH 08</span><span class="ch-n">Untitled UFO Short</span>
+</button>
+<button type="button" class="ch-btn" role="tab" data-ch="CH 09" data-title="The Toy Maker" data-genre="Trailer · 0:47" data-loop="media/toy_bg.mp4" data-poster="media/toy_poster.jpg" data-pv="pv-toy" data-log="One man leaves. The other keeps the workshop—and waits for decades.">
+<span class="ch-k">CH 09</span><span class="ch-n">The Toy Maker</span>
+</button>
+<button type="button" class="ch-btn" role="tab" data-ch="CH 10" data-title="The Audition" data-genre="One-room drama" data-loop="media/aud_loop.mp4" data-poster="media/aud_poster.jpg" data-pv="pv-aud" data-log="A man confronts the silence of an empty theatre — and realizes he no longer needs permission.">
+<span class="ch-k">CH 10</span><span class="ch-n">The Audition</span>
+</button>
+</div>
+<div class="crt-set">
+<div class="crt-bezel">
+<video id="ch-vid" muted loop playsinline preload="none" poster="media/nk_poster.jpg" data-lazy aria-label="Channel preview"></video>
+<div class="ch-static" aria-hidden="true"></div>
+<div class="ch-bug"><span id="ch-num">CH 03</span></div>
+</div>
+<div class="crt-meta">
+<div class="eyebrow" id="ch-genre">Body horror</div>
+<h3 id="ch-title">Nickolazei</h3>
+<p id="ch-log">A body-horror ballet. The performance doesn’t end when the eyes start to bleed.</p>
+<button type="button" class="button ch-play-inline" id="ch-play">Watch preview</button>
+</div>
+</div>
+
+</section>
+
+<section class="look" id="architect">
+<div class="look-inner">
+<div class="section-top">
+<div>
+<div class="eyebrow">03 / Lookbook</div>
 <h2>The Architect</h2>
 </div>
-<p>Fashion becomes a story of power, devotion, and the cost of winning.</p>
+<p>Model, not muse. Runway proportions, an A24 documentary-fashion register, and a face that stays locked. Starring Regina.</p>
 </div>
-<article class="architect">
-<div class="feature-art">
-<img src="media/8603ab75.jpg" alt="Regina’s court assembled beneath neon light">
-<span class="poster-mark">A</span>
-<span class="frame-tag">The Architect · Fashion film · 1:00 · 9:16</span>
-</div>
-<div class="feature-copy">
-<div class="eyebrow">The Architect · starring Regina</div>
-<h3>An apology<br>in couture.</h3>
-<p>At the end of the world, Regina, the most powerful being in the universe, turns a runway into an apology. Her son arrives with an army. The show goes on.</p>
-<div class="meta">Written and directed by Nicholas Tene</div>
-</div>
-</article>
-<div class="architect-world" aria-label="The Architect visual world">
+<div class="film-strip" aria-label="The Architect lookbook">
+<figure class="wide"><img src="media/lb_runway.jpg" alt="Three runway looks: jeweled vinyl, a beaded insect suit, and a glassy beetle carapace"></figure>
 <figure>
-<img src="media/e3306977.jpg" alt="A pale couture figure beside a winged metallic skull">
-<figcaption>Devotion</figcaption>
+<video muted loop playsinline preload="none" data-lazy poster="media/arch_walk.jpg" aria-label="A model in an iridescent sheer dress turning on the runway"><source src="media/arch_walk.mp4" type="video/mp4"></video>
+<figcaption>The walk</figcaption>
 </figure>
 <figure>
-<img src="media/a24e43a3.jpg" alt="Two pale pink figures joined by sculptural couture">
-<figcaption>Multiplicity</figcaption>
+<video muted loop playsinline preload="none" data-lazy poster="media/arch_poster.jpg" aria-label="A circle of guards as the floor shatters into cosmos"><source src="media/arch_loop.mp4" type="video/mp4"></video>
+<figcaption>The court</figcaption>
 </figure>
 <figure>
-<img src="media/1692afb3.jpg" alt="A black-and-gold armored couture figure">
-<figcaption>Dominion</figcaption>
+<video muted loop playsinline preload="none" data-lazy poster="media/arch_wings.jpg" aria-label="Crystalline wings growing from a corseted figure"><source src="media/arch_wings.mp4" type="video/mp4"></video>
+<figcaption>The wings</figcaption>
 </figure>
+<figure>
+<video muted loop playsinline preload="none" data-lazy poster="media/arch_horde.jpg" aria-label="A visored figure leading a skeletal horde in mist"><source src="media/arch_horde.mp4" type="video/mp4"></video>
+<figcaption>The horde</figcaption>
+</figure>
+<figure><img src="media/lb_gold.jpg" alt="A model in shattered gold couture before a white bone sculpture">
+<figcaption>Gold and bone</figcaption></figure>
+<figure><img src="media/lb_alien.jpg" alt="Close portrait of a patterned alien headpiece and pale blue skin">
+<figcaption>The oracle</figcaption></figure>
+<figure>
+<video muted loop playsinline preload="none" data-lazy poster="media/arch_tarot.jpg" aria-label="An alien fortune-teller sliding tarot cards through smoke"><source src="media/arch_tarot.mp4" type="video/mp4"></video>
+<figcaption>The reading</figcaption>
+</figure>
+<figure><img src="media/lb_visor.jpg" alt="A model in a pink visor and clear halo collar against a blue sky">
+<figcaption>Pink halo</figcaption></figure>
+<figure><img src="media/lb_fashion_visor.jpg" alt="Sculptural visor couture look from The Architect">
+<figcaption>Visor</figcaption></figure>
 </div>
-<article class="beauty">
-<div class="feature-art">
-<img src="media/c2f0112f.jpg" alt="A beauty portrait suspended in water and glitter">
-<span class="poster-mark">B</span>
-<span class="frame-tag">Beauty film</span>
+<a class="look-link" href="https://thearchitectfilm.com" rel="noopener" target="_blank">thearchitectfilm.com ↗</a>
 </div>
-<div class="feature-copy">
-<div class="eyebrow">Beauty campaign</div>
-<h3>Skin, light,<br>and texture.</h3>
-<p>An intimate beauty film with a touch of the unreal—close details and shifting light, landing on a single unforgettable face.</p>
-<div class="meta">Beauty film · AI-assisted</div>
-</div>
-</article>
 </section>
-<section class="story" id="stories">
-<div class="story-inner">
+
+<section class="comms" id="commercials">
 <div class="section-top">
 <div>
-<div class="eyebrow">02 / Narrative films and visual experiments</div>
-<h2>Then break it.</h2>
+<div class="eyebrow">04 / Spec commercials</div>
+<h2>The pitch.</h2>
 </div>
-<p>Where fashion becomes character, myth, and trouble.</p>
+<p>Campaign films written, directed, and performed for invented houses.</p>
 </div>
-<div class="story-grid">
-<article class="story-card" data-pv="pv-toy" data-title="The Toy Maker">
-<video class="story-bg" autoplay muted loop playsinline poster="media/toy_poster.jpg" aria-label="An old toy maker at his bench as rain falls outside"><source src="media/toy_bg.mp4" type="video/mp4"></video>
-<div class="no">01 / TRAILER · 0:47 · 9:16</div>
-<div class="card-bottom">
+<div class="comm-grid">
+<article class="comm-card" data-pv="pv-tene" data-title="TENE / DENIM">
+<video muted loop playsinline preload="none" data-lazy poster="media/tene_poster.jpg" aria-label="A helmeted figure and cosmic tentacles in a denim campaign"><source src="media/tene_loop.mp4" type="video/mp4"></video>
+<div class="no">TENE / DENIM</div>
 <div>
-<h3>The Toy Maker</h3>
-<p>One man leaves. The other keeps the workshop—and waits for decades.</p>
+<h3>TENE / DENIM</h3>
+<p>The only thing between us? Tentacles.</p>
 </div>
 <span class="pv-btn">▶ Preview</span>
-</div>
 </article>
+<article class="comm-card" data-pv="pv-receipt" data-title="Keep the Receipt">
+<video muted loop playsinline preload="none" data-lazy poster="media/receipt_still.jpg" aria-label="A beauty campaign built around a receipt for pores and dark circles"><source src="media/receipt_loop.mp4" type="video/mp4"></video>
+<div class="no">Beauty · Keep the Receipt</div>
+<div>
+<h3>Keep the Receipt</h3>
+<p>Pores, dark circles, texture, age: $0.00.</p>
+</div>
+<span class="pv-btn">▶ Preview</span>
+</article>
+</div>
+</section>
+
+<section class="exps" id="experiments">
+<div class="exp-inner">
+<div class="section-top">
+<div>
+<div class="eyebrow">05 / Experiments</div>
+<h2>One-offs.</h2>
+</div>
+<p>Three tests that earned a second look. The rest stayed on the bench.</p>
+</div>
+<div class="exp-grid">
+<figure class="exp-card">
+<video muted loop playsinline preload="none" data-lazy poster="media/exp_scream.jpg" aria-label="A man in a trench coat covers his ears and screams"><source src="media/exp_scream.mp4" type="video/mp4"></video>
+<span>The scream</span>
+</figure>
+<figure class="exp-card">
+<video muted loop playsinline preload="none" data-lazy poster="media/exp_levitate.jpg" aria-label="A metallic man levitates smoking over a city crosswalk"><source src="media/exp_levitate.mp4" type="video/mp4"></video>
+<span>Crosswalk</span>
+</figure>
+<figure class="exp-card">
+<video muted loop playsinline preload="none" data-lazy poster="media/exp_alley.jpg" aria-label="A shove in an alley cuts to a smiling portrait"><source src="media/exp_alley.mp4" type="video/mp4"></video>
+<span>The shove</span>
+</figure>
+</div>
+</div>
+</section>
+
+<section class="more" id="stories">
+<div class="section-top">
+<div>
+<div class="eyebrow">06 / Also screening</div>
+<h2>Then break it.</h2>
+</div>
+<p>Films already in the world, still worth the click.</p>
+</div>
+<div class="story-grid">
 <article class="story-card" data-pv="pv-mesh" data-title="The Mesh">
-<video class="story-bg" autoplay muted loop playsinline poster="media/6d659502.jpg" aria-label="A sequin top on a hanger opens a giant eye"><source src="media/e3e36fec.mp4" type="video/mp4"></video>
-<div class="no">02 / SHORT FILM · 1:14 · 9:16</div>
+<video class="story-bg" muted loop playsinline preload="none" data-lazy poster="media/6d659502.jpg" aria-label="A sequin top on a hanger opens a giant eye"><source src="media/e3e36fec.mp4" type="video/mp4"></video>
+<div class="no">SHORT FILM · 1:14</div>
 <div class="card-bottom">
 <div>
 <h3>The Mesh</h3>
@@ -481,7 +727,7 @@ html.fx-booted .hero-title.is-glitch{animation:title-glitch .38s steps(2,end)}
 </article>
 <article class="story-card" data-pv="pv-plumage" data-title="Plumage · The Black Swan">
 <img class="story-bg" src="media/a4352fc5.jpg" alt="A male ballet dancer transforms amid a storm of white feathers">
-<div class="no">03 / BALLET FILM · 0:47</div>
+<div class="no">BALLET FILM · 0:47</div>
 <div class="card-bottom">
 <div>
 <h3>Plumage</h3>
@@ -491,19 +737,19 @@ html.fx-booted .hero-title.is-glitch{animation:title-glitch .38s steps(2,end)}
 </div>
 </article>
 <article class="story-card" data-pv="pv-harvest" data-title="Dead Harvest">
-<video class="story-bg" autoplay muted loop playsinline poster="media/0df91545.jpg" aria-label="A horde marches up a driveway toward a cabin at night"><source src="media/0c760dcc.mp4" type="video/mp4"></video>
-<div class="no">04 / TRAILER · 1:25 · 9:16</div>
+<video class="story-bg" muted loop playsinline preload="none" data-lazy poster="media/0df91545.jpg" aria-label="A horde marches up a driveway toward a cabin at night"><source src="media/0c760dcc.mp4" type="video/mp4"></video>
+<div class="no">TRAILER · 1:25</div>
 <div class="card-bottom">
 <div>
 <h3>Dead Harvest</h3>
-<p>A son comes home for the weekend. His dad says he shouldn't have come.</p>
+<p>A son comes home for the weekend. His dad says he shouldn’t have come.</p>
 </div>
 <span class="pv-btn">▶ Preview</span>
 </div>
 </article>
-<article class="story-card wide" data-pv="pv-walk" data-title="Walk for Me">
-<video class="story-bg" autoplay muted loop playsinline preload="auto" poster="media/3bf3e2da.jpg" aria-label="A model in gold couture dives on the runway to stop a glowing dart"><source src="media/adbd32ae.mp4" type="video/mp4"></video>
-<div class="no">05 / FASHION ACTION · 0:29 · 16:9</div>
+<article class="story-card" data-pv="pv-walk" data-title="Walk for Me">
+<video class="story-bg" muted loop playsinline preload="none" data-lazy poster="media/3bf3e2da.jpg" aria-label="A model in gold couture dives on the runway to stop a glowing dart"><source src="media/adbd32ae.mp4" type="video/mp4"></video>
+<div class="no">FASHION ACTION · 0:29</div>
 <div class="card-bottom">
 <div>
 <h3>Walk for Me</h3>
@@ -512,78 +758,33 @@ html.fx-booted .hero-title.is-glitch{animation:title-glitch .38s steps(2,end)}
 <span class="pv-btn">▶ Preview</span>
 </div>
 </article>
-<article class="story-card trio">
-<img class="story-bg" src="media/f76c52a0.jpg" alt="A silhouette standing on a dark stage before a brightly lit empty hall">
-<div class="no">06 / ONE-ROOM DRAMA</div>
-<div class="card-bottom">
-<div>
-<h3>The Audition</h3>
-</div>
-<span class="soon">Preview soon</span>
-</div>
-</article>
-<article class="story-card trio">
-<img class="story-bg" src="media/8f853c5b.jpg" alt="A figure in a fringed jacket suspended above a New York street and yellow taxis">
-<div class="no">07 / EDITORIAL FILM · 9:16</div>
-<div class="card-bottom">
-<div>
-<h3>Rush Hour</h3>
-</div>
-<span class="soon">Preview soon</span>
-</div>
-</article>
-<article class="story-card trio">
-<img class="story-bg" src="media/ad01e227.jpg" alt="A close portrait of a long-haired figure with a marked face and fangs">
-<div class="no">08 / SHORT FILM · 1:45</div>
-<div class="card-bottom">
-<div>
-<h3>I Remember Everyone</h3>
-</div>
-<span class="soon">Preview soon</span>
-</div>
-</article>
-</div>
 </div>
 </section>
-<section class="range" id="range">
-<div class="range-inner">
+
+<section class="gallery" id="stills">
 <div class="section-top">
 <div>
-<div class="eyebrow">03 / Visual range</div>
-<h2>Other worlds.</h2>
+<div class="eyebrow">07 / Stills</div>
+<h2>Hold the frame.</h2>
 </div>
-<p>Creature couture, beauty, and images that leave a little mystery in the frame.</p>
+<p>A short edit of the stills that can stand alone.</p>
 </div>
-<div class="range-grid">
-<figure>
-<video autoplay muted loop playsinline preload="auto" poster="media/3bba10a8.jpg" aria-label="An alien couture portrait with biomechanical detail beneath the skin"><source src="media/0bf8d84d.mp4" type="video/mp4"></video>
-<figcaption>Creature couture</figcaption>
-</figure>
-<figure>
-<img src="media/dfa55cc4.jpg" alt="A beauty model framed by a glossy green sculptural form">
-<figcaption>Beauty, transformed</figcaption>
-</figure>
-<figure>
-<img src="media/a4d44bd6.jpg" alt="A woman in a dark forest before a spectral, antlered figure">
-<figcaption>Story worlds</figcaption>
-</figure>
-</div>
-<div class="range-pair">
-<figure>
-<video autoplay muted loop playsinline preload="auto" poster="media/77fc6003.jpg" aria-label="Slow push-in on a model in gold couture before white bone sculptures"><source src="media/bd4ebbb5.mp4" type="video/mp4"></video>
-<figcaption>Gold and bone</figcaption>
-</figure>
-<figure>
-<img src="media/e0b79947.jpg" alt="A short-haired model in gilded armor-like couture among woven white tendrils">
-<figcaption>Gilded armor</figcaption>
-</figure>
-</div>
+<div class="gal-grid">
+<figure><img src="media/gal_fortune.jpg" alt="A feathered fortune-teller at a shop window, writing in a ledger"></figure>
+<figure><img src="media/gal_underwater.jpg" alt="A woman in a glass helmet suspended underwater"></figure>
+<figure><img src="media/gal_beauty.jpg" alt="Wet-skinned beauty close-up with freckles and a direct gaze"></figure>
+<figure><img src="media/gal_cosmic.jpg" alt="A glittering cosmic figure under a ring of small moons"></figure>
+<figure><img src="media/gal_smoke.jpg" alt="A woman in a dark bedroom, smoke and window light across her face"></figure>
+<figure><img src="media/gal_crystal.jpg" alt="A fortune-teller with fur and a crystal ball in a diner booth"></figure>
+<figure><img src="media/nk_centipede.jpg" alt="A many-limbed human centipede creature in an empty warehouse"></figure>
+<figure><img src="media/dark_hug.jpg" alt="A couple in a golden-hour embrace, seen from behind"></figure>
 </div>
 </section>
+
 <section class="section">
 <div class="process">
 <div>
-<div class="eyebrow">03 / What a brand gets</div>
+<div class="eyebrow">08 / What a brand gets</div>
 <h2>A visual world<br>that holds.</h2>
 <p>I build each project from a clear visual direction, then carry the character, styling, and light through the finished film.</p>
 </div>
@@ -595,26 +796,27 @@ html.fx-booted .hero-title.is-glitch{animation:title-glitch .38s steps(2,end)}
 </div>
 <div>
 <span>02</span>
-<span class="step-text"><span class="step-name">Character & styling</span><span class="step-desc">Consistent faces, wardrobe, and looks carried through every shot.</span></span>
+<span class="step-text"><span class="step-name">Character &amp; styling</span><span class="step-desc">Consistent faces, wardrobe, and looks carried through every shot.</span></span>
 <span>↗</span>
 </div>
 <div>
 <span>03</span>
-<span class="step-text"><span class="step-name">Shot design & motion</span><span class="step-desc">Cinematic framing and movement, designed frame by frame.</span></span>
+<span class="step-text"><span class="step-name">Shot design &amp; motion</span><span class="step-desc">Cinematic framing and movement, designed frame by frame.</span></span>
 <span>↗</span>
 </div>
 <div>
 <span>04</span>
-<span class="step-text"><span class="step-name">Edit, sound & grade</span><span class="step-desc">A finished film with edit, sound design, and color, ready to post.</span></span>
+<span class="step-text"><span class="step-name">Edit, sound &amp; grade</span><span class="step-desc">A finished film with edit, sound design, and color, ready to post.</span></span>
 <span>↗</span>
 </div>
 </div>
 </div>
 </section>
+
 <section class="about" id="about">
 <div class="about-inner">
 <div>
-<div class="eyebrow">04 / About</div>
+<div class="eyebrow">09 / About</div>
 <h2>Nicholas Tene</h2>
 <p class="tagline">Actor-trained. Machine-made.</p>
 </div>
@@ -624,8 +826,9 @@ html.fx-booted .hero-title.is-glitch{animation:title-glitch .38s steps(2,end)}
 </div>
 </div>
 </section>
+
 <section class="contact" id="contact">
-<div class="eyebrow">05 / Collaborate</div>
+<div class="eyebrow">10 / Collaborate</div>
 <h2>Have a collection<br>that needs a film?</h2>
 <p>Tell me what you’re building. I create fashion and beauty campaigns, runway films, and original stories.</p>
 <a class="button primary" href="mailto:nicholastene@gmail.com?subject=New%20project%20inquiry">Start a project ↗</a>
@@ -641,32 +844,35 @@ html.fx-booted .hero-title.is-glitch{animation:title-glitch .38s steps(2,end)}
 </div>
 <label><span>Brand or project</span><input type="text" name="brand_or_project"></label>
 <label><span>Message</span><textarea name="message" rows="5" placeholder="Tell me about the collection, timeline, and where the film will live." required></textarea></label>
-<button class="button primary" type="submit">Send ↗</button>
+<button type="submit" class="button primary">Send</button>
 </form>
+<p class="tiny">Or just email me. I read everything.</p>
 </section>
 </main>
 <footer>
-<span>© 2026 Nicholas Tene · New York City</span>
-<span class="footer-right">
+<div>© Nicholas Tene · Dark March · Brooklyn</div>
+<div class="footer-right">
 <a href="mailto:nicholastene@gmail.com">Email</a>
 <a href="https://www.instagram.com/dark_march/">Instagram</a>
 <a href="https://www.tiktok.com/@darkmarch4">TikTok</a>
-</span>
+</div>
 </footer>
+
+<template id="pv-nk"><source src="media/nk_prev.mp4" type="video/mp4"></template>
+<template id="pv-dark"><source src="media/dark_prev.mp4" type="video/mp4"></template>
+<template id="pv-ff"><source src="media/ff_prev.mp4" type="video/mp4"></template>
+<template id="pv-space"><source src="media/space_prev.mp4" type="video/mp4"></template>
+<template id="pv-ufo"><source src="media/ufo_full.mp4" type="video/mp4"></template>
 <template id="pv-toy"><source src="media/toy_prev.mp4" type="video/mp4"></template>
+<template id="pv-aud"><source src="media/aud_prev.mp4" type="video/mp4"></template>
+<template id="pv-tene"><source src="media/tene_prev.mp4" type="video/mp4"></template>
+<template id="pv-receipt"><source src="media/receipt_prev.mp4" type="video/mp4"></template>
 <template id="pv-mesh"><source src="media/68a4fcd5.mp4" type="video/mp4"></template>
 <template id="pv-plumage"><source src="media/566359c7.mp4" type="video/mp4"></template>
 <template id="pv-harvest"><source src="media/0fa1526d.mp4" type="video/mp4"></template>
 <template id="pv-walk"><source src="media/04d5a62d.mp4" type="video/mp4"></template>
 <dialog id="pv"><div class="pv-top"><span id="pv-title">Preview</span><button type="button" id="pv-close">Close ✕</button></div><video id="pv-video" controls playsinline></video></dialog>
-<script>
-(function(){var d=document.getElementById('pv'),v=document.getElementById('pv-video'),t=document.getElementById('pv-title');
-function close(){v.pause();v.innerHTML='';v.removeAttribute('src');v.load();if(d.open)d.close();}
-document.querySelectorAll('.story-card[data-pv]').forEach(function(c){c.addEventListener('click',function(){var tp=document.getElementById(c.dataset.pv);if(!tp)return;v.innerHTML='';v.appendChild(tp.content.cloneNode(true));v.load();t.textContent=(c.dataset.title||'')+' · Preview';d.showModal();var p=v.play();if(p&&p.catch)p.catch(function(){});});});
-document.getElementById('pv-close').addEventListener('click',close);
-d.addEventListener('click',function(e){if(e.target===d)close();});
-d.addEventListener('cancel',function(){v.pause();});d.addEventListener('close',function(){v.pause();});})();
-</script>
+
 <script>
 (function(){
   var root=document.documentElement;
@@ -729,7 +935,7 @@ d.addEventListener('cancel',function(){v.pause();});d.addEventListener('close',f
   }
 
   /* Cursor flashlight + 3D tilt: desktop / mouse only. Delegated, no canvas. */
-  var tiltSel='.story-card,.frame,.range-grid figure,.range-pair figure,.sig-media,.feature-art,.architect-world figure';
+  var tiltSel='.story-card,.frame,.sig-media,.comm-card,.exp-card,.film-strip figure,.crt-bezel,.reel-frame';
   var pointerOn=false,x=0,y=0,tick=false,tilting=null;
   function enablePointerFx(){
     if(pointerOn)return;
@@ -777,21 +983,235 @@ d.addEventListener('cancel',function(){v.pause();});d.addEventListener('close',f
   try{if(window.matchMedia('(hover:hover) and (pointer:fine)').matches)enablePointerFx()}catch(e){}
 
   /* Scroll reveals */
-  var nodes=document.querySelectorAll('.sig,.section,.story-card,.range-grid figure,.range-pair figure,.process,.about-inner,.contact,footer,.architect-world figure,.beauty');
+  var nodes=document.querySelectorAll('.sig,.section,.story-card,.process,.about-inner,.contact,footer,.reel,.broadcast,.look,.comms,.exps,.more,.gallery');
+  function bumpReveal(){
+    nodes.forEach(function(n){
+      var r=n.getBoundingClientRect();
+      if(r.top<(window.innerHeight||800)*0.98 && r.bottom>24) n.classList.add('is-in');
+    });
+  }
   if('IntersectionObserver' in window){
     var io=new IntersectionObserver(function(entries){
       entries.forEach(function(en){
         if(en.isIntersecting){en.target.classList.add('is-in');io.unobserve(en.target)}
       });
-    },{rootMargin:'0px 0px -8% 0px',threshold:0.08});
+    },{rootMargin:'0px 0px 0px 0px',threshold:0.01});
     nodes.forEach(function(n,i){
       n.classList.add('fx-reveal');
-      n.style.transitionDelay=(Math.min(i%6,5)*70)+'ms';
+      n.style.transitionDelay=(Math.min(i%6,5)*50)+'ms';
       io.observe(n);
     });
+    bumpReveal();
+    setTimeout(bumpReveal,120);
+    window.addEventListener('scroll',bumpReveal,{passive:true});
   }else{
     nodes.forEach(function(n){n.classList.add('is-in')});
   }
+})();
+
+</script>
+<script>
+/* Channels, lazy video, showreel, Web Audio bed */
+(function(){
+  var reduce=false;
+  try{reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){}
+
+  /* Lazy play/pause — no offscreen playback, preload none already in markup */
+  if('IntersectionObserver' in window){
+    var vio=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        var v=en.target;
+        if(v.dataset.hold==='1') return;
+        if(en.isIntersecting){var p=v.play(); if(p&&p.catch)p.catch(function(){})}
+        else v.pause();
+      });
+    },{rootMargin:'180px 0px',threshold:0.12});
+    document.querySelectorAll('video[data-lazy],video.story-bg,.film-strip video,.exp-card video,.comm-card video,#ch-vid,#reel-vid,.sig-media video').forEach(function(v){
+      v.setAttribute('preload','none');
+      vio.observe(v);
+    });
+    window.__ntVio=vio;
+  }
+
+  /* Preview dialog — any [data-pv], keep sound on explicit play */
+  var d=document.getElementById('pv'), pv=document.getElementById('pv-video'), pt=document.getElementById('pv-title');
+  function closePv(){pv.pause();pv.innerHTML='';pv.removeAttribute('src');pv.load();if(d.open)d.close();duck(false)}
+  document.querySelectorAll('[data-pv]:not(.ch-btn)').forEach(function(c){
+    c.addEventListener('click',function(e){
+      if(e.target.closest && e.target.closest('a')) return;
+      var tp=document.getElementById(c.dataset.pv); if(!tp) return;
+      pv.innerHTML=''; pv.appendChild(tp.content.cloneNode(true)); pv.load();
+      pt.textContent=(c.dataset.title||'')+' · Preview';
+      d.showModal();
+      pv.muted=false;
+      duck(true);
+      var p=pv.play(); if(p&&p.catch)p.catch(function(){});
+    });
+  });
+  var closeBtn=document.getElementById('pv-close');
+  if(closeBtn) closeBtn.addEventListener('click',closePv);
+  d.addEventListener('click',function(e){if(e.target===d)closePv()});
+  d.addEventListener('close',function(){pv.pause();duck(false)});
+
+  /* Showreel: silent loop, click plays the 2:47 cut with sound */
+  var reel=document.getElementById('reel-vid'), reelBtn=document.getElementById('reel-play'), reelFrame=document.querySelector('.reel-frame');
+  if(reel){
+    if(!reel.querySelector('source') && reel.dataset.loop){
+      reel.src=reel.dataset.loop;
+    }
+    function playReel(){
+      reel.dataset.hold='1';
+      reel.loop=false; reel.muted=false; reel.controls=true;
+      reel.src=reel.dataset.full; reel.play();
+      if(reelFrame) reelFrame.classList.add('is-playing');
+      if(reelBtn) reelBtn.style.display='none';
+      duck(true);
+    }
+    function resetReel(){
+      reel.dataset.hold='';
+      reel.controls=false; reel.loop=true; reel.muted=true;
+      reel.src=reel.dataset.loop;
+      if(reelFrame) reelFrame.classList.remove('is-playing');
+      if(reelBtn) reelBtn.style.display='';
+      duck(false);
+      var p=reel.play(); if(p&&p.catch)p.catch(function(){});
+    }
+    if(reelBtn) reelBtn.addEventListener('click',function(e){e.stopPropagation();playReel()});
+    reel.addEventListener('ended',resetReel);
+  }
+
+  /* CRT channel tuner */
+  var chVid=document.getElementById('ch-vid');
+  var chNum=document.getElementById('ch-num');
+  var chTitle=document.getElementById('ch-title');
+  var chGenre=document.getElementById('ch-genre');
+  var chLog=document.getElementById('ch-log');
+  var chPlay=document.getElementById('ch-play');
+  var bezel=document.querySelector('.crt-bezel');
+  var buttons=[].slice.call(document.querySelectorAll('.ch-btn'));
+  var tuneTimer=null;
+  function tune(btn){
+    if(!btn||!chVid) return;
+    buttons.forEach(function(b){b.classList.toggle('is-on',b===btn)});
+    if(bezel) bezel.classList.add('is-tuning');
+    clearTimeout(tuneTimer);
+    var apply=function(){
+      chVid.pause();
+      chVid.poster=btn.dataset.poster||'';
+      chVid.src=btn.dataset.loop;
+      chVid.muted=true;
+      chVid.dataset.hold='';
+      var p=chVid.play(); if(p&&p.catch)p.catch(function(){});
+      if(chNum) chNum.textContent=btn.dataset.ch||'';
+      if(chTitle) chTitle.textContent=btn.dataset.title||'';
+      if(chGenre) chGenre.textContent=btn.dataset.genre||'';
+      if(chLog) chLog.textContent=btn.dataset.log||'';
+      if(chPlay){
+        if(btn.dataset.pv){ chPlay.hidden=false; chPlay.dataset.pv=btn.dataset.pv; chPlay.dataset.title=btn.dataset.title||''; }
+        else chPlay.hidden=true;
+      }
+      if(bezel) bezel.classList.remove('is-tuning');
+    };
+    tuneTimer=setTimeout(apply, reduce?0:180);
+  }
+  buttons.forEach(function(b){b.addEventListener('click',function(){tune(b)})});
+  if(buttons[0]) tune(buttons[0]);
+  if(chPlay) chPlay.addEventListener('click',function(){
+    var id=chPlay.dataset.pv, tp=id&&document.getElementById(id);
+    if(!tp) return;
+    pv.innerHTML=''; pv.appendChild(tp.content.cloneNode(true)); pv.load();
+    pt.textContent=(chPlay.dataset.title||'')+' · Preview';
+    d.showModal(); pv.muted=false; duck(true);
+    var p=pv.play(); if(p&&p.catch)p.catch(function(){});
+  });
+
+  /* SOUND ON — Web Audio drone + tape hiss + slow heartbeat. Muted until the user toggles. */
+  var sndBtn=document.getElementById('snd');
+  var bed={ctx:null, master:null, on:false, ducking:false, heart:0};
+  function ensureBed(){
+    if(bed.ctx) return bed;
+    var AC=window.AudioContext||window.webkitAudioContext;
+    if(!AC) return null;
+    var ctx=new AC();
+    var master=ctx.createGain();
+    master.gain.value=0.0001;
+    master.connect(ctx.destination);
+    [54.5, 81.6, 108.8].forEach(function(freq,i){
+      var o=ctx.createOscillator();
+      o.type=i===2?'sine':'sawtooth';
+      o.frequency.value=freq;
+      var g=ctx.createGain();
+      g.gain.value=i===0?0.05:i===1?0.03:0.02;
+      var f=ctx.createBiquadFilter();
+      f.type='lowpass'; f.frequency.value=240;
+      var lfo=ctx.createOscillator();
+      lfo.frequency.value=0.06+i*0.025;
+      var lg=ctx.createGain(); lg.gain.value=3.2;
+      lfo.connect(lg); lg.connect(o.frequency);
+      o.connect(g); g.connect(f); f.connect(master);
+      o.start(); lfo.start();
+    });
+    var len=ctx.sampleRate*2, buf=ctx.createBuffer(1,len,ctx.sampleRate), data=buf.getChannelData(0);
+    for(var i=0;i<len;i++) data[i]=Math.random()*2-1;
+    var hiss=ctx.createBufferSource(); hiss.buffer=buf; hiss.loop=true;
+    var hp=ctx.createBiquadFilter(); hp.type='highpass'; hp.frequency.value=2000;
+    var hg=ctx.createGain(); hg.gain.value=0.018;
+    hiss.connect(hp); hp.connect(hg); hg.connect(master); hiss.start();
+    var beat=ctx.createOscillator(); beat.type='sine'; beat.frequency.value=40;
+    var bg=ctx.createGain(); bg.gain.value=0;
+    beat.connect(bg); bg.connect(master); beat.start();
+    function pulse(){
+      if(!bed.on||!bed.ctx) return;
+      var t=bed.ctx.currentTime;
+      bg.gain.cancelScheduledValues(t);
+      bg.gain.setValueAtTime(0.0001,t);
+      bg.gain.linearRampToValueAtTime(0.09,t+0.035);
+      bg.gain.exponentialRampToValueAtTime(0.0008,t+0.16);
+      bg.gain.setValueAtTime(0.0008,t+0.22);
+      bg.gain.linearRampToValueAtTime(0.055,t+0.26);
+      bg.gain.exponentialRampToValueAtTime(0.0008,t+0.42);
+      bed.heart=setTimeout(pulse, 1480);
+    }
+    bed.ctx=ctx; bed.master=master; bed.pulse=pulse;
+    return bed;
+  }
+  function setSound(on){
+    var b=ensureBed();
+    if(!b) return;
+    if(b.ctx.state==='suspended') b.ctx.resume();
+    b.on=on;
+    var t=b.ctx.currentTime;
+    b.master.gain.cancelScheduledValues(t);
+    b.master.gain.exponentialRampToValueAtTime(on&&!b.ducking?0.55:0.0001, t+0.6);
+    if(sndBtn){
+      sndBtn.setAttribute('aria-pressed', on?'true':'false');
+      sndBtn.textContent=on?'Sound on':'Sound off';
+    }
+    clearTimeout(b.heart);
+    if(on&&b.pulse) b.pulse();
+  }
+  function duck(dck){
+    bed.ducking=!!dck;
+    if(!bed.ctx||!bed.on) return;
+    var t=bed.ctx.currentTime;
+    bed.master.gain.cancelScheduledValues(t);
+    bed.master.gain.exponentialRampToValueAtTime(dck?0.08:0.55, t+0.25);
+  }
+  window.__ntDuck=duck;
+  if(sndBtn) sndBtn.addEventListener('click',function(){setSound(!bed.on)});
+
+  /* When sound is on, hovering a card with data-snd unmutes that preview (if it has audio). */
+  document.querySelectorAll('[data-snd]').forEach(function(card){
+    var v=card.querySelector('video');
+    if(!v) return;
+    card.addEventListener('pointerenter',function(){
+      if(!bed.on||v.readyState<2) return;
+      v.muted=false; duck(true);
+    });
+    card.addEventListener('pointerleave',function(){
+      v.muted=true; duck(false);
+    });
+  });
 })();
 
 </script>
