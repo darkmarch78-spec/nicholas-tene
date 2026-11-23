@@ -1,0 +1,72 @@
+name: Materialize media and enable Pages
+on:
+  push:
+    paths:
+      - "media-b64/**"
+      - ".github/workflows/materialize-media.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Decode base64 media into media/
+        run: |
+          set -euo pipefail
+          mkdir -p media
+          if [ ! -d media-b64 ]; then
+            echo "No media-b64 directory"
+            exit 0
+          fi
+          for f in media-b64/*.b64; do
+            [ -e "$f" ] || continue
+            base64 -d "$f" > "media/$(basename "$f" .b64)"
+          done
+          ls -lh media | head
+      - name: Commit decoded media
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A media
+          if git diff --cached --quiet; then
+            echo "No media changes"
+          else
+            git commit -m "Add decoded landing-page media"
+            git push
+          fi
+      - name: Enable GitHub Pages from main root
+        run: |
+          set -euo pipefail
+          # Create Pages config if missing; ignore 409 Conflict when it already exists.
+          code=$(curl -sS -o /tmp/pages-out.json -w "%{http_code}" \
+            -X POST \
+            -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/pages" \
+            -d '{"source":{"branch":"main","path":"/"}}')
+          echo "POST /pages status: $code"
+          cat /tmp/pages-out.json
+          if [ "$code" != "201" ] && [ "$code" != "409" ] && [ "$code" != "200" ]; then
+            # Try PUT to set source if the site already exists
+            code2=$(curl -sS -o /tmp/pages-put.json -w "%{http_code}" \
+              -X PUT \
+              -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+              -H "Accept: application/vnd.github+json" \
+              -H "X-GitHub-Api-Version: 2022-11-28" \
+              "https://api.github.com/repos/${GITHUB_REPOSITORY}/pages" \
+              -d '{"source":{"branch":"main","path":"/"}}')
+            echo "PUT /pages status: $code2"
+            cat /tmp/pages-put.json
+            if [ "$code2" != "204" ] && [ "$code2" != "200" ] && [ "$code" != "409" ]; then
+              exit 1
+            fi
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
