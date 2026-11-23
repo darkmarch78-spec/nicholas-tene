@@ -552,7 +552,7 @@ header{z-index:20;gap:16px}
 </div>
 <p>Two minutes forty-seven. A cut of the films, the commercials, and the worlds in between.</p>
 </div>
-<div class="reel-frame">
+<div class="reel-frame" id="reel-frame">
 <video id="reel-vid" muted loop playsinline preload="none" poster="media/reel_poster.jpg" data-loop="media/reel_loop.mp4" data-full="media/reel_full.mp4" data-lazy aria-label="Showreel preview, looping silently"></video>
 <button type="button" class="reel-play" id="reel-play">Play reel · 2:47</button>
 </div>
@@ -663,10 +663,25 @@ header{z-index:20;gap:16px}
 </div>
 </section>
 
+<section class="reel" id="regina">
+<div class="section-top">
+<div>
+<div class="eyebrow">04 / Performance</div>
+<h2>Regina</h2>
+</div>
+<p>A close-up cut. The hold, the flash, the break.</p>
+</div>
+<div class="reel-frame" id="regina-frame">
+<video id="regina-vid" muted loop playsinline preload="none" poster="media/regina_poster.jpg" data-loop="media/regina_loop.mp4" data-full="media/regina_reel.mp4" data-lazy aria-label="Regina in a close performance, looping silently until you press play"></video>
+<button type="button" class="reel-play" id="regina-play">Play · 0:21</button>
+</div>
+<span class="reel-note">Silent loop until you press play. Sound starts with the cut.</span>
+</section>
+
 <section class="comms" id="commercials">
 <div class="section-top">
 <div>
-<div class="eyebrow">04 / Spec commercials</div>
+<div class="eyebrow">05 / Spec commercials</div>
 <h2>The pitch.</h2>
 </div>
 <p>Campaign films written, directed, and performed for invented houses.</p>
@@ -697,7 +712,7 @@ header{z-index:20;gap:16px}
 <div class="exp-inner">
 <div class="section-top">
 <div>
-<div class="eyebrow">05 / Experiments</div>
+<div class="eyebrow">06 / Experiments</div>
 <h2>One-offs.</h2>
 </div>
 <p>Four one-offs, and a late-night loop. The rest stayed on the bench.</p>
@@ -730,7 +745,7 @@ header{z-index:20;gap:16px}
 <section class="more" id="stories">
 <div class="section-top">
 <div>
-<div class="eyebrow">06 / Also screening</div>
+<div class="eyebrow">07 / Also screening</div>
 <h2>Then break it.</h2>
 </div>
 <p>Films already in the world, still worth the click.</p>
@@ -786,7 +801,7 @@ header{z-index:20;gap:16px}
 <section class="gallery" id="stills">
 <div class="section-top">
 <div>
-<div class="eyebrow">07 / Stills</div>
+<div class="eyebrow">08 / Stills</div>
 <h2>Hold the frame.</h2>
 </div>
 <p>A short edit of the stills that can stand alone.</p>
@@ -806,7 +821,7 @@ header{z-index:20;gap:16px}
 <section class="section">
 <div class="process">
 <div>
-<div class="eyebrow">08 / What a brand gets</div>
+<div class="eyebrow">09 / What a brand gets</div>
 <h2>A visual world<br>that holds.</h2>
 <p>I build each project from a clear visual direction, then carry the character, styling, and light through the finished film.</p>
 </div>
@@ -838,7 +853,7 @@ header{z-index:20;gap:16px}
 <section class="about" id="about">
 <div class="about-inner">
 <div>
-<div class="eyebrow">09 / About</div>
+<div class="eyebrow">10 / About</div>
 <h2>Nicholas Tene</h2>
 <p class="tagline">Actor-trained. Machine-made.</p>
 </div>
@@ -850,7 +865,7 @@ header{z-index:20;gap:16px}
 </section>
 
 <section class="contact" id="contact">
-<div class="eyebrow">10 / Collaborate</div>
+<div class="eyebrow">11 / Collaborate</div>
 <h2>Have a collection<br>that needs a film?</h2>
 <p>Tell me what you’re building. I create fashion and beauty campaigns, runway films, and original stories.</p>
 <a class="button primary" href="mailto:nicholastene@gmail.com?subject=New%20project%20inquiry">Start a project ↗</a>
@@ -1041,7 +1056,7 @@ header{z-index:20;gap:16px}
   /* If muted autoplay is rejected (iPhone Low Power Mode), show a tap-to-play control.
      Skip the showreel and preview dialog — they already have their own play buttons. */
   function tapBox(v){
-    if(!v || v.id==='reel-vid' || v.id==='pv-video') return null;
+    if(!v || v.id==='reel-vid' || v.id==='regina-vid' || v.id==='pv-video') return null;
     return v.closest('figure, article.comm-card, .crt-bezel, .sig-media, .story-card') || v.parentElement;
   }
   function clearTap(v){
@@ -1082,7 +1097,7 @@ header{z-index:20;gap:16px}
         else v.pause();
       });
     },{rootMargin:'180px 0px',threshold:0.12});
-    document.querySelectorAll('video[data-lazy],video.story-bg,.film-strip video,.exp-card video,.comm-card video,#ch-vid,#reel-vid,.sig-media video').forEach(function(v){
+    document.querySelectorAll('video[data-lazy],video.story-bg,.film-strip video,.exp-card video,.comm-card video,#ch-vid,#reel-vid,#regina-vid,.sig-media video').forEach(function(v){
       v.setAttribute('preload','none');
       vio.observe(v);
     });
@@ -1109,32 +1124,47 @@ header{z-index:20;gap:16px}
   d.addEventListener('click',function(e){if(e.target===d)closePv()});
   d.addEventListener('close',function(){pv.pause();duck(false)});
 
-  /* Showreel: silent loop, click plays the 2:47 cut with sound */
-  var reel=document.getElementById('reel-vid'), reelBtn=document.getElementById('reel-play'), reelFrame=document.querySelector('.reel-frame');
-  if(reel){
-    if(!reel.querySelector('source') && reel.dataset.loop){
-      reel.src=reel.dataset.loop;
-    }
-    function playReel(){
-      reel.dataset.hold='1';
-      reel.loop=false; reel.muted=false; reel.controls=true;
-      reel.src=reel.dataset.full; reel.play();
-      if(reelFrame) reelFrame.classList.add('is-playing');
-      if(reelBtn) reelBtn.style.display='none';
+  /* Sound reels: silent loop, click plays the full cut with sound and ducks the bed */
+  function resetSoundReel(vid){
+    if(!vid) return;
+    vid.dataset.hold='';
+    vid.controls=false; vid.loop=true; vid.muted=true;
+    if(vid.dataset.loop) vid.src=vid.dataset.loop;
+    var frame=vid.closest('.reel-frame'); if(frame) frame.classList.remove('is-playing');
+    var btn=document.getElementById(vid.id==='reel-vid'?'reel-play':'regina-play');
+    if(btn) btn.style.display='';
+  }
+  function bindSoundReel(vidId, btnId, frameId){
+    var vid=document.getElementById(vidId), btn=document.getElementById(btnId), frame=document.getElementById(frameId);
+    if(!vid) return;
+    if(!vid.querySelector('source') && vid.dataset.loop) vid.src=vid.dataset.loop;
+    function play(){
+      ['reel-vid','regina-vid'].forEach(function(id){
+        if(id===vidId) return;
+        var other=document.getElementById(id);
+        if(other && other.dataset.hold==='1'){
+          other.pause();
+          resetSoundReel(other);
+        }
+      });
+      vid.dataset.hold='1';
+      vid.loop=false; vid.muted=false; vid.controls=true;
+      vid.src=vid.dataset.full;
+      var p=vid.play(); if(p&&p.catch)p.catch(function(){});
+      if(frame) frame.classList.add('is-playing');
+      if(btn) btn.style.display='none';
       duck(true);
     }
-    function resetReel(){
-      reel.dataset.hold='';
-      reel.controls=false; reel.loop=true; reel.muted=true;
-      reel.src=reel.dataset.loop;
-      if(reelFrame) reelFrame.classList.remove('is-playing');
-      if(reelBtn) reelBtn.style.display='';
+    function reset(){
+      resetSoundReel(vid);
       duck(false);
-      var p=reel.play(); if(p&&p.catch)p.catch(function(){});
+      var p=vid.play(); if(p&&p.catch)p.catch(function(){});
     }
-    if(reelBtn) reelBtn.addEventListener('click',function(e){e.stopPropagation();playReel()});
-    reel.addEventListener('ended',resetReel);
+    if(btn) btn.addEventListener('click',function(e){e.stopPropagation();play()});
+    vid.addEventListener('ended',reset);
   }
+  bindSoundReel('reel-vid','reel-play','reel-frame');
+  bindSoundReel('regina-vid','regina-play','regina-frame');
 
   /* CRT channel tuner */
   var chVid=document.getElementById('ch-vid');
