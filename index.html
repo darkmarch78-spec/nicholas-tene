@@ -356,7 +356,7 @@ header{z-index:20;gap:16px}
 .hero.swan .hero-tag{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin:0 0 22px}
 .hero.swan .hero-study{margin-top:28px;font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#8a8178}
 .hero-art.swan-art{position:relative;height:auto;min-height:calc(100svh - 72px);display:block;grid-template-columns:none;overflow:hidden}
-.hero-art.swan-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 40%;filter:saturate(.92) contrast(1.05)}
+.hero-art.swan-art img,.hero-art.swan-art video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;filter:saturate(.92) contrast(1.05);display:block}
 .hero-art.swan-art:before{display:none}
 .hero-art.swan-art:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#0e0d0d 0 2%,#0e0d0d00 22%),linear-gradient(180deg,#0e0d0d55 0 8%,transparent 28%)}
 
@@ -502,6 +502,53 @@ header{z-index:20;gap:16px}
   .snd{letter-spacing:.12em}
 }
 
+
+/* 01 / The Women — editorial opening grid */
+.open-grid{
+  display:grid;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:10px;
+  grid-auto-flow:dense;
+}
+.open-grid figure{margin:0;position:relative;overflow:hidden;background:#1a1716}
+.open-grid img,.open-grid video{width:100%;height:100%;object-fit:cover;display:block}
+.open-grid .port-pos img,.open-grid .port-pos video{object-position:center 20%}
+.open-grid figcaption{
+  position:absolute;left:0;right:0;bottom:0;padding:28px 12px 10px;
+  background:linear-gradient(transparent,#070707e0);
+  font:italic 15px var(--serif);color:#eee5d9;pointer-events:none
+}
+.open-grid .span2{grid-column:span 2}
+.open-grid .span3{grid-column:span 3}
+.open-grid .span4{grid-column:span 4}
+.open-grid .span6{grid-column:span 6}
+.open-grid .ratio45{aspect-ratio:4/5}
+.open-grid .ratio169{aspect-ratio:16/9}
+.open-grid .ratio34{aspect-ratio:3/4}
+.open-grid .ratio916{aspect-ratio:9/16}
+.open-grid .ratio11{aspect-ratio:1/1}
+.open-grid .bone{grid-column:span 4}
+
+/* Regina performance + teaser, side by side */
+.regina-pair{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:22px;
+  max-width:1100px;
+  margin:0 auto;
+  align-items:start
+}
+.regina-col .regina-label{
+  font:italic 22px var(--serif);color:#eee5d9;margin:0 0 12px
+}
+.regina-pair .reel-frame{max-width:none;width:100%;aspect-ratio:9/16;margin:0}
+@media(max-width:800px){
+  .open-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .open-grid .span2,.open-grid .span3{grid-column:span 1}
+  .open-grid .span4,.open-grid .span6,.open-grid .bone{grid-column:span 2}
+  .regina-pair{grid-template-columns:1fr;max-width:420px;gap:28px}
+}
+
 </style>
 <body>
 <div id="crt" aria-hidden="true" aria-label="Broadcast starting. Click or press any key to skip.">
@@ -537,17 +584,80 @@ header{z-index:20;gap:16px}
 <a class="button primary" href="#reel">Watch the reel</a>
 <a class="button" href="mailto:nicholastene@gmail.com?subject=New%20project%20inquiry">Start a project</a>
 </div>
-<div class="hero-study">Black Swan · Concept study</div>
+<div class="hero-study">The Runway · Opening study</div>
 </div>
 <div class="hero-art swan-art" aria-hidden="false">
-<img src="media/hero_swan.jpg" alt="A performer in a feathered costume draws back a theatre curtain toward a pink stage light">
+<video autoplay muted loop playsinline preload="metadata" poster="media/open_runway_poster.jpg" aria-label="Models in sheer white gowns walk a hazy runway as the lighting shifts to moody red and a cool-blue spotlight"><source src="media/open_runway.mp4" type="video/mp4"></video>
+</div>
+</section>
+
+
+<section class="look" id="opening">
+<div class="look-inner">
+<div class="section-top">
+<div>
+<div class="eyebrow">01 / Opening</div>
+<h2>The women.</h2>
+</div>
+<p>Fashion films, living portraits, and worlds built around a singular presence.</p>
+</div>
+<div class="open-grid" aria-label="Opening showcase of female leads">
+<figure class="span3 ratio45 port-pos">
+<img src="media/open_baroque.jpg" alt="A model in baroque mirror-visor armor, gold filigree catching the light">
+<figcaption>Baroque visor</figcaption>
+</figure>
+<figure class="span3 ratio45 port-pos">
+<img src="media/open_filigree.jpg" alt="A close portrait in a sculpted gold filigree eye mask">
+<figcaption>Filigree</figcaption>
+</figure>
+<figure class="span6 ratio169">
+<video muted loop playsinline preload="none" data-lazy poster="media/open_visor_poster.jpg" aria-label="A model in a pink filigree visor, eyes glowing blue"><source src="media/open_visor.mp4" type="video/mp4"></video>
+<figcaption>Pink visor</figcaption>
+</figure>
+<figure class="span2 ratio45">
+<img src="media/open_crt_girls.jpg" alt="Two women in gold satin seated between CRT monitors and keyboards">
+<figcaption>The terminal</figcaption>
+</figure>
+<figure class="span2 ratio45">
+<video muted loop playsinline preload="none" data-lazy poster="media/open_chrome_poster.jpg" aria-label="A wet chrome cyborg blinks in close-up"><source src="media/open_chrome.mp4" type="video/mp4"></video>
+<figcaption>Chrome</figcaption>
+</figure>
+<figure class="span2 ratio45 port-pos">
+<video muted loop playsinline preload="none" data-lazy poster="media/open_morph_poster.jpg" aria-label="A silver runway bodysuit morphs as the model walks"><source src="media/open_morph.mp4" type="video/mp4"></video>
+<figcaption>The morph</figcaption>
+</figure>
+<figure class="span2 ratio916 port-pos">
+<video muted loop playsinline preload="none" data-lazy poster="media/open_goldwalk_poster.jpg" aria-label="A model walks the runway in shattered-gold couture"><source src="media/open_goldwalk.mp4" type="video/mp4"></video>
+<figcaption>Gold walk</figcaption>
+</figure>
+<figure class="bone">
+<video muted loop playsinline preload="none" data-lazy poster="media/open_bone_duo_poster.jpg" aria-label="Gold armor and a black turtleneck, a bone sculpture shifting in parallax"><source src="media/open_bone_duo.mp4" type="video/mp4"></video>
+<figcaption>Gold and bone</figcaption>
+</figure>
+<figure class="span3 ratio34 port-pos">
+<video muted loop playsinline preload="none" data-lazy poster="media/open_palace_poster.jpg" aria-label="Opulent palace couture in a sci-fi court"><source src="media/open_palace.mp4" type="video/mp4"></video>
+<figcaption>Palace</figcaption>
+</figure>
+<figure class="span3 ratio34 port-pos">
+<img src="media/open_pink_portrait.jpg" alt="A glossy close portrait in pink light">
+<figcaption>Temperance</figcaption>
+</figure>
+<figure class="span3 ratio11">
+<video muted loop playsinline preload="none" data-lazy poster="media/open_eyes_poster.jpg" aria-label="A freckled green-eyed living portrait"><source src="media/open_eyes.mp4" type="video/mp4"></video>
+<figcaption>The eyes</figcaption>
+</figure>
+<figure class="span3 ratio11">
+<video muted loop playsinline preload="none" data-lazy poster="media/open_bangs_poster.jpg" aria-label="A wet-hair, blunt-bangs living portrait"><source src="media/open_bangs.mp4" type="video/mp4"></video>
+<figcaption>The bangs</figcaption>
+</figure>
+</div>
 </div>
 </section>
 
 <section class="reel" id="reel">
 <div class="section-top">
 <div>
-<div class="eyebrow">01 / On air</div>
+<div class="eyebrow">02 / On air</div>
 <h2>Showreel</h2>
 </div>
 <p>Two minutes forty-seven. A cut of the films, the commercials, and the worlds in between.</p>
@@ -572,7 +682,7 @@ header{z-index:20;gap:16px}
 <section class="broadcast" id="films">
 <div class="section-top">
 <div>
-<div class="eyebrow">02 / Transmission</div>
+<div class="eyebrow">03 / Transmission</div>
 <h2>Select a channel.</h2>
 </div>
 <p>A short wave across the films. Tune one, then preview it.</p>
@@ -623,7 +733,7 @@ header{z-index:20;gap:16px}
 <div class="look-inner">
 <div class="section-top">
 <div>
-<div class="eyebrow">03 / Lookbook</div>
+<div class="eyebrow">04 / Lookbook</div>
 <h2>The Architect</h2>
 </div>
 <p>Model, not muse. Runway proportions, an A24 documentary-fashion register, and a face that stays locked. Starring Regina.</p>
@@ -666,22 +776,35 @@ header{z-index:20;gap:16px}
 <section class="reel" id="regina">
 <div class="section-top">
 <div>
-<div class="eyebrow">04 / Performance</div>
+<div class="eyebrow">05 / Performance</div>
 <h2>Regina</h2>
 </div>
-<p>A close-up cut. The hold, the flash, the break.</p>
+<p>A close-up cut, and the teaser that holds on her face.</p>
 </div>
+<div class="regina-pair">
+<div class="regina-col">
+<div class="regina-label">Performance</div>
 <div class="reel-frame" id="regina-frame">
 <video id="regina-vid" muted loop playsinline preload="none" poster="media/regina_poster.jpg" data-loop="media/regina_loop.mp4" data-full="media/regina_reel.mp4" data-lazy aria-label="Regina in a close performance, looping silently until you press play"></video>
 <button type="button" class="reel-play" id="regina-play">Play · 0:21</button>
 </div>
 <span class="reel-note">Silent loop until you press play. Sound starts with the cut.</span>
+</div>
+<div class="regina-col">
+<div class="regina-label">Teaser</div>
+<div class="reel-frame" id="regina-teaser-frame">
+<video id="regina-teaser-vid" muted loop playsinline preload="none" poster="media/regina_teaser_poster.jpg" data-loop="media/regina_teaser_loop.mp4" data-full="media/regina_teaser.mp4" data-lazy aria-label="Regina teaser, looping silently until you press play"></video>
+<button type="button" class="reel-play" id="regina-teaser-play">Play · 0:39</button>
+</div>
+<span class="reel-note">Silent loop until you press play. Sound starts with the cut.</span>
+</div>
+</div>
 </section>
 
 <section class="comms" id="commercials">
 <div class="section-top">
 <div>
-<div class="eyebrow">05 / Spec commercials</div>
+<div class="eyebrow">06 / Spec commercials</div>
 <h2>The pitch.</h2>
 </div>
 <p>Campaign films written, directed, and performed for invented houses.</p>
@@ -712,7 +835,7 @@ header{z-index:20;gap:16px}
 <div class="exp-inner">
 <div class="section-top">
 <div>
-<div class="eyebrow">06 / Experiments</div>
+<div class="eyebrow">07 / Experiments</div>
 <h2>One-offs.</h2>
 </div>
 <p>Four one-offs, and a late-night loop. The rest stayed on the bench.</p>
@@ -745,7 +868,7 @@ header{z-index:20;gap:16px}
 <section class="more" id="stories">
 <div class="section-top">
 <div>
-<div class="eyebrow">07 / Also screening</div>
+<div class="eyebrow">08 / Also screening</div>
 <h2>Then break it.</h2>
 </div>
 <p>Films already in the world, still worth the click.</p>
@@ -801,7 +924,7 @@ header{z-index:20;gap:16px}
 <section class="gallery" id="stills">
 <div class="section-top">
 <div>
-<div class="eyebrow">08 / Stills</div>
+<div class="eyebrow">09 / Stills</div>
 <h2>Hold the frame.</h2>
 </div>
 <p>A short edit of the stills that can stand alone.</p>
@@ -821,7 +944,7 @@ header{z-index:20;gap:16px}
 <section class="section">
 <div class="process">
 <div>
-<div class="eyebrow">09 / What a brand gets</div>
+<div class="eyebrow">10 / What a brand gets</div>
 <h2>A visual world<br>that holds.</h2>
 <p>I build each project from a clear visual direction, then carry the character, styling, and light through the finished film.</p>
 </div>
@@ -853,7 +976,7 @@ header{z-index:20;gap:16px}
 <section class="about" id="about">
 <div class="about-inner">
 <div>
-<div class="eyebrow">10 / About</div>
+<div class="eyebrow">11 / About</div>
 <h2>Nicholas Tene</h2>
 <p class="tagline">Actor-trained. Machine-made.</p>
 </div>
@@ -865,7 +988,7 @@ header{z-index:20;gap:16px}
 </section>
 
 <section class="contact" id="contact">
-<div class="eyebrow">11 / Collaborate</div>
+<div class="eyebrow">12 / Collaborate</div>
 <h2>Have a collection<br>that needs a film?</h2>
 <p>Tell me what you’re building. I create fashion and beauty campaigns, runway films, and original stories.</p>
 <a class="button primary" href="mailto:nicholastene@gmail.com?subject=New%20project%20inquiry">Start a project ↗</a>
@@ -1056,8 +1179,8 @@ header{z-index:20;gap:16px}
   /* If muted autoplay is rejected (iPhone Low Power Mode), show a tap-to-play control.
      Skip the showreel and preview dialog — they already have their own play buttons. */
   function tapBox(v){
-    if(!v || v.id==='reel-vid' || v.id==='regina-vid' || v.id==='pv-video') return null;
-    return v.closest('figure, article.comm-card, .crt-bezel, .sig-media, .story-card') || v.parentElement;
+    if(!v || v.id==='reel-vid' || v.id==='regina-vid' || v.id==='regina-teaser-vid' || v.id==='pv-video') return null;
+    return v.closest('figure, article.comm-card, .crt-bezel, .sig-media, .story-card, .hero-art') || v.parentElement;
   }
   function clearTap(v){
     var box=tapBox(v);
@@ -1097,7 +1220,7 @@ header{z-index:20;gap:16px}
         else v.pause();
       });
     },{rootMargin:'180px 0px',threshold:0.12});
-    document.querySelectorAll('video[data-lazy],video.story-bg,.film-strip video,.exp-card video,.comm-card video,#ch-vid,#reel-vid,#regina-vid,.sig-media video').forEach(function(v){
+    document.querySelectorAll('video[data-lazy],video.story-bg,.film-strip video,.exp-card video,.comm-card video,#ch-vid,#reel-vid,#regina-vid,#regina-teaser-vid,.sig-media video,.hero-art.swan-art video,.open-grid video').forEach(function(v){
       v.setAttribute('preload','none');
       vio.observe(v);
     });
@@ -1131,7 +1254,7 @@ header{z-index:20;gap:16px}
     vid.controls=false; vid.loop=true; vid.muted=true;
     if(vid.dataset.loop) vid.src=vid.dataset.loop;
     var frame=vid.closest('.reel-frame'); if(frame) frame.classList.remove('is-playing');
-    var btn=document.getElementById(vid.id==='reel-vid'?'reel-play':'regina-play');
+    var btn=(vid.closest('.reel-frame')||document).querySelector('.reel-play')||document.getElementById(vid.id==='reel-vid'?'reel-play':vid.id==='regina-teaser-vid'?'regina-teaser-play':'regina-play');
     if(btn) btn.style.display='';
   }
   function bindSoundReel(vidId, btnId, frameId){
@@ -1139,7 +1262,7 @@ header{z-index:20;gap:16px}
     if(!vid) return;
     if(!vid.querySelector('source') && vid.dataset.loop) vid.src=vid.dataset.loop;
     function play(){
-      ['reel-vid','regina-vid'].forEach(function(id){
+      ['reel-vid','regina-vid','regina-teaser-vid'].forEach(function(id){
         if(id===vidId) return;
         var other=document.getElementById(id);
         if(other && other.dataset.hold==='1'){
@@ -1165,6 +1288,7 @@ header{z-index:20;gap:16px}
   }
   bindSoundReel('reel-vid','reel-play','reel-frame');
   bindSoundReel('regina-vid','regina-play','regina-frame');
+  bindSoundReel('regina-teaser-vid','regina-teaser-play','regina-teaser-frame');
 
   /* CRT channel tuner */
   var chVid=document.getElementById('ch-vid');
