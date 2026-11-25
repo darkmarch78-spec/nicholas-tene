@@ -465,7 +465,10 @@ header{z-index:20;gap:16px}
 .gal-grid figure{margin:0 0 12px;break-inside:avoid;position:relative;overflow:hidden;background:#1a1716}
 .gal-grid img{width:100%;display:block;filter:saturate(.9)}
 
+.runway-reel{display:none}
 @media(max-width:800px){
+  .hero-art .runway-reel{position:absolute;z-index:2;left:6vw;bottom:24px;display:inline-flex;align-items:center;gap:.65em;min-height:44px;padding:0 16px;color:#171411;background:#eee9e0;font:600 12px/1.25 Arial,sans-serif;text-decoration:none}
+  .runway-reel:focus-visible{outline:3px solid white;outline-offset:4px}
   .hero.swan{grid-template-columns:1fr;padding:0;min-height:0;gap:0}
   .hero-art.swan-art{min-height:62vh;grid-row:1}
   .hero.swan .hero-copy{grid-row:2;padding:36px 6vw 50px}
@@ -587,6 +590,7 @@ header{z-index:20;gap:16px}
 <div class="hero-study">The Runway · Opening study</div>
 </div>
 <div class="hero-art swan-art" aria-hidden="false">
+<a class="runway-reel" id="runway-reel" href="#reel"><span aria-hidden="true">▶</span>Watch reel · 1:18</a>
 <video autoplay muted loop playsinline preload="metadata" poster="media/open_runway_poster.jpg" aria-label="Models in sheer white gowns walk a hazy runway as the lighting shifts to moody red and a cool-blue spotlight"><source src="media/open_runway.mp4" type="video/mp4"></video>
 </div>
 </section>
@@ -660,7 +664,7 @@ header{z-index:20;gap:16px}
 <div class="eyebrow">02 / On air</div>
 <h2>Showreel</h2>
 </div>
-<p>Two minutes forty-seven. A cut of the films, the commercials, and the worlds in between.</p>
+<p>1:18. A cut of the films, the commercials, and the worlds in between.</p>
 </div>
 <div class="reel-frame" id="reel-frame">
 <video id="reel-vid" muted loop playsinline preload="none" poster="media/reel_poster_v2.jpg" data-loop="media/reel_loop.mp4" data-full="media/reel_full_v2.mp4" data-lazy aria-label="Showreel preview, looping silently"></video>
@@ -1287,6 +1291,15 @@ header{z-index:20;gap:16px}
     vid.addEventListener('ended',reset);
   }
   bindSoundReel('reel-vid','reel-play','reel-frame');
+  var runwayReel=document.getElementById('runway-reel');
+  if(runwayReel) runwayReel.addEventListener('click',function(e){
+    var player=document.getElementById('reel-vid'), trigger=document.getElementById('reel-play');
+    if(!player || !trigger || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    player.scrollIntoView({behavior:'instant',block:'center'});
+    trigger.click();
+    player.focus({preventScroll:true});
+  });
   bindSoundReel('regina-vid','regina-play','regina-frame');
   bindSoundReel('regina-teaser-vid','regina-teaser-play','regina-teaser-frame');
 
