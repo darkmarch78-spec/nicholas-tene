@@ -439,11 +439,8 @@ header{z-index:20;gap:16px}
 /* Experiments */
 .exps{background:#141211;padding:70px 5vw}
 .exp-inner{max-width:1500px;margin:auto}
-.exp-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;max-width:1100px}
-.exp-card.wide{grid-column:1/-1;aspect-ratio:16/9}
+.exp-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;max-width:1100px}
 .exp-card{position:relative;overflow:hidden;aspect-ratio:3/4;background:#1a1716;margin:0}
-.exp-card video,.exp-card img{width:100%;height:100%;object-fit:cover;display:block}
-.exp-card span{position:absolute;left:0;right:0;bottom:0;padding:24px 12px 10px;background:linear-gradient(transparent,#070707e8);font:italic 16px var(--serif)}
 .tap-play{
   display:none;
   position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
@@ -453,10 +450,8 @@ header{z-index:20;gap:16px}
   cursor:pointer;pointer-events:auto;
 }
 .needs-tap>.tap-play{display:inline-block}
-@media(prefers-reduced-motion:reduce){
-  .tap-play{transform:translate(-50%,-50%)}
-}
-
+.exp-card video,.exp-card img{width:100%;height:100%;object-fit:cover;display:block}
+.exp-card span{position:absolute;left:0;right:0;bottom:0;padding:24px 12px 10px;background:linear-gradient(transparent,#070707e8);font:italic 16px var(--serif)}
 
 /* Also screening + gallery */
 .more{max-width:1500px;margin:auto;padding:70px 5vw 40px}
@@ -466,6 +461,8 @@ header{z-index:20;gap:16px}
 .gal-grid img{width:100%;display:block;filter:saturate(.9)}
 
 .runway-reel{display:none}
+.runway-pulse{position:absolute;z-index:3;bottom:24px;right:clamp(12px,4vw,48px);min-height:44px;padding:0 13px;border:1px solid #c8ac87;background:#171411ed;color:#f4ece2;font:600 12px/1.25 Arial,sans-serif;cursor:pointer}
+.runway-pulse:focus-visible{outline:3px solid white;outline-offset:3px}
 @media(max-width:800px){
   .hero-art .runway-reel{position:absolute;z-index:2;left:6vw;bottom:24px;display:inline-flex;align-items:center;gap:.65em;min-height:44px;padding:0 16px;color:#171411;background:#eee9e0;font:600 12px/1.25 Arial,sans-serif;text-decoration:none}
   .runway-reel:focus-visible{outline:3px solid white;outline-offset:4px}
@@ -505,53 +502,6 @@ header{z-index:20;gap:16px}
   .snd{letter-spacing:.12em}
 }
 
-
-/* 01 / The Women — editorial opening grid */
-.open-grid{
-  display:grid;
-  grid-template-columns:repeat(6,minmax(0,1fr));
-  gap:10px;
-  grid-auto-flow:dense;
-}
-.open-grid figure{margin:0;position:relative;overflow:hidden;background:#1a1716}
-.open-grid img,.open-grid video{width:100%;height:100%;object-fit:cover;display:block}
-.open-grid .port-pos img,.open-grid .port-pos video{object-position:center 20%}
-.open-grid figcaption{
-  position:absolute;left:0;right:0;bottom:0;padding:28px 12px 10px;
-  background:linear-gradient(transparent,#070707e0);
-  font:italic 15px var(--serif);color:#eee5d9;pointer-events:none
-}
-.open-grid .span2{grid-column:span 2}
-.open-grid .span3{grid-column:span 3}
-.open-grid .span4{grid-column:span 4}
-.open-grid .span6{grid-column:span 6}
-.open-grid .ratio45{aspect-ratio:4/5}
-.open-grid .ratio169{aspect-ratio:16/9}
-.open-grid .ratio34{aspect-ratio:3/4}
-.open-grid .ratio916{aspect-ratio:9/16}
-.open-grid .ratio11{aspect-ratio:1/1}
-.open-grid .bone{grid-column:span 4}
-
-/* Regina performance + teaser, side by side */
-.regina-pair{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:22px;
-  max-width:1100px;
-  margin:0 auto;
-  align-items:start
-}
-.regina-col .regina-label{
-  font:italic 22px var(--serif);color:#eee5d9;margin:0 0 12px
-}
-.regina-pair .reel-frame{max-width:none;width:100%;aspect-ratio:9/16;margin:0}
-@media(max-width:800px){
-  .open-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-  .open-grid .span2,.open-grid .span3{grid-column:span 1}
-  .open-grid .span4,.open-grid .span6,.open-grid .bone{grid-column:span 2}
-  .regina-pair{grid-template-columns:1fr;max-width:420px;gap:28px}
-}
-
 </style>
 <body>
 <div id="crt" aria-hidden="true" aria-label="Broadcast starting. Click or press any key to skip.">
@@ -577,12 +527,10 @@ header{z-index:20;gap:16px}
 <section class="hero swan" aria-label="Nicholas Tene, filmmaker">
 <div class="hero-copy">
 <div class="kicker">Dark March · AI Cinema · Brooklyn</div>
-<h1 class="hero-title">The work,<br>
-<em>in progress.</em>
-</h1>
+<h1 class="hero-title">I direct fashion and <em>beauty films.</em></h1>
+<p>My acting background shapes how I direct a glance, a pause, or a walk down the runway.</p>
 <p class="hero-by">Nicholas Tene · Filmmaker</p>
 <p class="hero-tag">Actor-trained. Machine-made. · SAG-AFTRA · Strasberg</p>
-<p>Fashion, beauty, and story films with a cinematic edge—written, directed, and built frame by frame.</p>
 <div class="actions">
 <a class="button primary" href="#reel">Watch the reel</a>
 <a class="button" href="mailto:nicholastene@gmail.com?subject=New%20project%20inquiry">Start a project</a>
@@ -590,85 +538,23 @@ header{z-index:20;gap:16px}
 <div class="hero-study">The Runway · Opening study</div>
 </div>
 <div class="hero-art swan-art" aria-hidden="false">
-<a class="runway-reel" id="runway-reel" href="#reel"><span aria-hidden="true">▶</span>Watch reel · 1:18</a>
+<a class="runway-reel" id="runway-reel" href="#reel"><span aria-hidden="true">▶</span>Watch reel · 2:47</a>
+<button class="runway-pulse" id="runway-pulse" type="button">Play runway pulse</button>
 <video autoplay muted loop playsinline preload="metadata" poster="media/open_runway_poster.jpg" aria-label="Models in sheer white gowns walk a hazy runway as the lighting shifts to moody red and a cool-blue spotlight"><source src="media/open_runway.mp4" type="video/mp4"></video>
-</div>
-</section>
-
-
-<section class="look" id="opening">
-<div class="look-inner">
-<div class="section-top">
-<div>
-<div class="eyebrow">01 / Opening</div>
-<h2>The women.</h2>
-</div>
-<p>Fashion films, living portraits, and worlds built around a singular presence.</p>
-</div>
-<div class="open-grid" aria-label="Opening showcase of female leads">
-<figure class="span3 ratio45 port-pos">
-<img src="media/open_baroque.jpg" alt="A model in baroque mirror-visor armor, gold filigree catching the light">
-<figcaption>Baroque visor</figcaption>
-</figure>
-<figure class="span3 ratio45 port-pos">
-<img src="media/open_filigree.jpg" alt="A close portrait in a sculpted gold filigree eye mask">
-<figcaption>Filigree</figcaption>
-</figure>
-<figure class="span6 ratio169">
-<video muted loop playsinline preload="none" data-lazy poster="media/open_visor_poster.jpg" aria-label="A model in a pink filigree visor, eyes glowing blue"><source src="media/open_visor.mp4" type="video/mp4"></video>
-<figcaption>Pink visor</figcaption>
-</figure>
-<figure class="span2 ratio45">
-<img src="media/open_crt_girls.jpg" alt="Two women in gold satin seated between CRT monitors and keyboards">
-<figcaption>The terminal</figcaption>
-</figure>
-<figure class="span2 ratio45">
-<video muted loop playsinline preload="none" data-lazy poster="media/open_chrome_poster.jpg" aria-label="A wet chrome cyborg blinks in close-up"><source src="media/open_chrome.mp4" type="video/mp4"></video>
-<figcaption>Chrome</figcaption>
-</figure>
-<figure class="span2 ratio45 port-pos">
-<video muted loop playsinline preload="none" data-lazy poster="media/open_morph_poster.jpg" aria-label="A silver runway bodysuit morphs as the model walks"><source src="media/open_morph.mp4" type="video/mp4"></video>
-<figcaption>The morph</figcaption>
-</figure>
-<figure class="span2 ratio916 port-pos">
-<video muted loop playsinline preload="none" data-lazy poster="media/open_goldwalk_poster.jpg" aria-label="A model walks the runway in shattered-gold couture"><source src="media/open_goldwalk.mp4" type="video/mp4"></video>
-<figcaption>Gold walk</figcaption>
-</figure>
-<figure class="bone">
-<video muted loop playsinline preload="none" data-lazy poster="media/open_bone_duo_poster.jpg" aria-label="Gold armor and a black turtleneck, a bone sculpture shifting in parallax"><source src="media/open_bone_duo.mp4" type="video/mp4"></video>
-<figcaption>Gold and bone</figcaption>
-</figure>
-<figure class="span3 ratio34 port-pos">
-<video muted loop playsinline preload="none" data-lazy poster="media/open_palace_poster.jpg" aria-label="Opulent palace couture in a sci-fi court"><source src="media/open_palace.mp4" type="video/mp4"></video>
-<figcaption>Palace</figcaption>
-</figure>
-<figure class="span3 ratio34 port-pos">
-<img src="media/open_pink_portrait.jpg" alt="A glossy close portrait in pink light">
-<figcaption>Temperance</figcaption>
-</figure>
-<figure class="span3 ratio11">
-<video muted loop playsinline preload="none" data-lazy poster="media/open_eyes_poster.jpg" aria-label="A freckled green-eyed living portrait"><source src="media/open_eyes.mp4" type="video/mp4"></video>
-<figcaption>The eyes</figcaption>
-</figure>
-<figure class="span3 ratio11">
-<video muted loop playsinline preload="none" data-lazy poster="media/open_bangs_poster.jpg" aria-label="A wet-hair, blunt-bangs living portrait"><source src="media/open_bangs.mp4" type="video/mp4"></video>
-<figcaption>The bangs</figcaption>
-</figure>
-</div>
 </div>
 </section>
 
 <section class="reel" id="reel">
 <div class="section-top">
 <div>
-<div class="eyebrow">02 / On air</div>
+<div class="eyebrow">01 / On air</div>
 <h2>Showreel</h2>
 </div>
-<p>1:18. A cut of the films, the commercials, and the worlds in between.</p>
+<p>Two minutes forty-seven. A cut of the films, the commercials, and the worlds in between.</p>
 </div>
-<div class="reel-frame" id="reel-frame">
-<video id="reel-vid" muted loop playsinline preload="none" poster="media/reel_poster_v2.jpg" data-loop="media/reel_loop.mp4" data-full="media/reel_full_v2.mp4" data-lazy aria-label="Showreel preview, looping silently"></video>
-<button type="button" class="reel-play" id="reel-play">Play reel · 1:18</button>
+<div class="reel-frame">
+<video id="reel-vid" muted loop playsinline preload="none" poster="media/reel_poster.jpg" data-loop="media/reel_loop.mp4" data-full="media/reel_full_pulse.mp4" data-lazy aria-label="Showreel preview, looping silently"></video>
+<button type="button" class="reel-play" id="reel-play">Play reel · 2:47</button>
 </div>
 <span class="reel-note">Silent loop until you press play. Sound starts with the cut.</span>
 </section>
@@ -686,15 +572,12 @@ header{z-index:20;gap:16px}
 <section class="broadcast" id="films">
 <div class="section-top">
 <div>
-<div class="eyebrow">03 / Transmission</div>
+<div class="eyebrow">02 / Transmission</div>
 <h2>Select a channel.</h2>
 </div>
 <p>A short wave across the films. Tune one, then preview it.</p>
 </div>
 <div class="channel-bar" role="tablist" aria-label="Film channels">
-<button type="button" class="ch-btn is-on" role="tab" aria-selected="true" data-ch="CH 06" data-title="The Architect" data-genre="Fashion film · starring Regina" data-loop="media/arch_loop.mp4" data-poster="media/arch_poster.jpg" data-log="Fashion becomes a story of power, devotion, and the cost of winning.">
-<span class="ch-k">CH 06</span><span class="ch-n">The Architect</span>
-</button>
 <button type="button" class="ch-btn" role="tab" aria-selected="false" data-ch="CH 03" data-title="Nickolazei" data-genre="Body horror" data-loop="media/nk_loop.mp4" data-poster="media/nk_poster.jpg" data-pv="pv-nk" data-log="A body-horror ballet. The performance doesn’t end when the eyes start to bleed.">
 <span class="ch-k">CH 03</span><span class="ch-n">Nickolazei</span>
 </button>
@@ -703,6 +586,9 @@ header{z-index:20;gap:16px}
 </button>
 <button type="button" class="ch-btn" role="tab" data-ch="CH 05" data-title="Nov 3 1985" data-genre="Found footage" data-loop="media/ff_loop.mp4" data-poster="media/ff_poster.jpg" data-pv="pv-ff" data-log="Found footage from a week that shouldn’t exist. The tape keeps recording.">
 <span class="ch-k">CH 05</span><span class="ch-n">Nov 3 1985</span>
+</button>
+<button type="button" class="ch-btn is-on" role="tab" aria-selected="true" data-ch="CH 06" data-title="The Architect" data-genre="Fashion film · starring Regina" data-loop="media/arch_loop.mp4" data-poster="media/arch_poster.jpg" data-log="Fashion becomes a story of power, devotion, and the cost of winning.">
+<span class="ch-k">CH 06</span><span class="ch-n">The Architect</span>
 </button>
 <button type="button" class="ch-btn" role="tab" data-ch="CH 07" data-title="The Space Between Us" data-genre="Psychological sci-fi romance" data-loop="media/space_loop.mp4" data-poster="media/space_poster.jpg" data-pv="pv-space" data-log="Two people, one city, and the distance between stars.">
 <span class="ch-k">CH 07</span><span class="ch-n">The Space Between Us</span>
@@ -737,7 +623,7 @@ header{z-index:20;gap:16px}
 <div class="look-inner">
 <div class="section-top">
 <div>
-<div class="eyebrow">04 / Lookbook</div>
+<div class="eyebrow">03 / Lookbook</div>
 <h2>The Architect</h2>
 </div>
 <p>Model, not muse. Runway proportions, an A24 documentary-fashion register, and a face that stays locked. Starring Regina.</p>
@@ -777,38 +663,10 @@ header{z-index:20;gap:16px}
 </div>
 </section>
 
-<section class="reel" id="regina">
-<div class="section-top">
-<div>
-<div class="eyebrow">05 / Performance</div>
-<h2>Regina</h2>
-</div>
-<p>A close-up cut, and the teaser that holds on her face.</p>
-</div>
-<div class="regina-pair">
-<div class="regina-col">
-<div class="regina-label">Performance</div>
-<div class="reel-frame" id="regina-frame">
-<video id="regina-vid" muted loop playsinline preload="none" poster="media/regina_poster.jpg" data-loop="media/regina_loop.mp4" data-full="media/regina_reel_v3.mp4" data-lazy aria-label="Regina in a close performance, looping silently until you press play"></video>
-<button type="button" class="reel-play" id="regina-play">Play · 0:15</button>
-</div>
-<span class="reel-note">Silent loop until you press play. Sound starts with the cut.</span>
-</div>
-<div class="regina-col">
-<div class="regina-label">Teaser</div>
-<div class="reel-frame" id="regina-teaser-frame">
-<video id="regina-teaser-vid" muted loop playsinline preload="none" poster="media/regina_teaser_poster.jpg" data-loop="media/regina_teaser_loop.mp4" data-full="media/regina_teaser.mp4" data-lazy aria-label="Regina teaser, looping silently until you press play"></video>
-<button type="button" class="reel-play" id="regina-teaser-play">Play · 0:39</button>
-</div>
-<span class="reel-note">Silent loop until you press play. Sound starts with the cut.</span>
-</div>
-</div>
-</section>
-
 <section class="comms" id="commercials">
 <div class="section-top">
 <div>
-<div class="eyebrow">06 / Spec commercials</div>
+<div class="eyebrow">04 / Spec commercials</div>
 <h2>The pitch.</h2>
 </div>
 <p>Campaign films written, directed, and performed for invented houses.</p>
@@ -839,10 +697,10 @@ header{z-index:20;gap:16px}
 <div class="exp-inner">
 <div class="section-top">
 <div>
-<div class="eyebrow">07 / Experiments</div>
+<div class="eyebrow">05 / Experiments</div>
 <h2>One-offs.</h2>
 </div>
-<p>Four one-offs, and a late-night loop. The rest stayed on the bench.</p>
+<p>Three tests that earned a second look. The rest stayed on the bench.</p>
 </div>
 <div class="exp-grid">
 <figure class="exp-card">
@@ -857,14 +715,6 @@ header{z-index:20;gap:16px}
 <video muted loop playsinline preload="none" data-lazy poster="media/exp_alley.jpg" aria-label="A shove in an alley cuts to a smiling portrait"><source src="media/exp_alley.mp4" type="video/mp4"></video>
 <span>The shove</span>
 </figure>
-<figure class="exp-card">
-<video muted loop playsinline preload="none" data-lazy poster="media/exp_crawl.jpg" aria-label="A body-horror centipede of human arms crawling through a parking garage"><source src="media/exp_crawl.mp4" type="video/mp4"></video>
-<span>The crawl</span>
-</figure>
-<figure class="exp-card wide">
-<video muted loop playsinline preload="none" data-lazy poster="media/exp_night.jpg" aria-label="Two women in gold satin on a purple couch among 1980s computers"><source src="media/exp_night.mp4" type="video/mp4"></video>
-<span>Night shift</span>
-</figure>
 </div>
 </div>
 </section>
@@ -872,7 +722,7 @@ header{z-index:20;gap:16px}
 <section class="more" id="stories">
 <div class="section-top">
 <div>
-<div class="eyebrow">08 / Also screening</div>
+<div class="eyebrow">06 / Also screening</div>
 <h2>Then break it.</h2>
 </div>
 <p>Films already in the world, still worth the click.</p>
@@ -928,7 +778,7 @@ header{z-index:20;gap:16px}
 <section class="gallery" id="stills">
 <div class="section-top">
 <div>
-<div class="eyebrow">09 / Stills</div>
+<div class="eyebrow">07 / Stills</div>
 <h2>Hold the frame.</h2>
 </div>
 <p>A short edit of the stills that can stand alone.</p>
@@ -948,7 +798,7 @@ header{z-index:20;gap:16px}
 <section class="section">
 <div class="process">
 <div>
-<div class="eyebrow">10 / What a brand gets</div>
+<div class="eyebrow">08 / What a brand gets</div>
 <h2>A visual world<br>that holds.</h2>
 <p>I build each project from a clear visual direction, then carry the character, styling, and light through the finished film.</p>
 </div>
@@ -980,19 +830,19 @@ header{z-index:20;gap:16px}
 <section class="about" id="about">
 <div class="about-inner">
 <div>
-<div class="eyebrow">11 / About</div>
+<div class="eyebrow">09 / About</div>
 <h2>Nicholas Tene</h2>
 <p class="tagline">Actor-trained. Machine-made.</p>
 </div>
 <div>
-<p>I’m Nicholas Tene, a New York–based filmmaker. I write, direct, and edit AI-assisted fashion films, beauty campaigns, and product stories.</p>
-<p>Trained as a SAG-AFTRA actor at the Lee Strasberg Theatre &amp; Film Institute, I bring a performer’s eye for gesture and emotion to every frame.</p>
+<p>Nicholas Tene. Actor, SAG-AFTRA, trained at the Lee Strasberg Theatre &amp; Film Institute. Directing with AI in New York.</p>
+<p>New York–based filmmaker, actor, and AI creative. A SAG-AFTRA performer trained at the Lee Strasberg Theatre &amp; Film Institute, he brings a performer’s attention to gesture and emotion to fashion films and original stories.</p>
 </div>
 </div>
 </section>
 
 <section class="contact" id="contact">
-<div class="eyebrow">12 / Collaborate</div>
+<div class="eyebrow">10 / Collaborate</div>
 <h2>Have a collection<br>that needs a film?</h2>
 <p>Tell me what you’re building. I create fashion and beauty campaigns, runway films, and original stories.</p>
 <a class="button primary" href="mailto:nicholastene@gmail.com?subject=New%20project%20inquiry">Start a project ↗</a>
@@ -1183,8 +1033,8 @@ header{z-index:20;gap:16px}
   /* If muted autoplay is rejected (iPhone Low Power Mode), show a tap-to-play control.
      Skip the showreel and preview dialog — they already have their own play buttons. */
   function tapBox(v){
-    if(!v || v.id==='reel-vid' || v.id==='regina-vid' || v.id==='regina-teaser-vid' || v.id==='pv-video') return null;
-    return v.closest('figure, article.comm-card, .crt-bezel, .sig-media, .story-card, .hero-art') || v.parentElement;
+    if(!v || v.id==='reel-vid' || v.id==='pv-video') return null;
+    return v.closest('figure, article.comm-card, .crt-bezel, .sig-media, .story-card, .hero-art, .exp-card') || v.parentElement;
   }
   function clearTap(v){
     var box=tapBox(v);
@@ -1224,7 +1074,7 @@ header{z-index:20;gap:16px}
         else v.pause();
       });
     },{rootMargin:'180px 0px',threshold:0.12});
-    document.querySelectorAll('video[data-lazy],video.story-bg,.film-strip video,.exp-card video,.comm-card video,#ch-vid,#reel-vid,#regina-vid,#regina-teaser-vid,.sig-media video,.hero-art.swan-art video,.open-grid video').forEach(function(v){
+    document.querySelectorAll('video[data-lazy],video.story-bg,.film-strip video,.exp-card video,.comm-card video,#ch-vid,#reel-vid,.sig-media video,.hero-art.swan-art video').forEach(function(v){
       v.setAttribute('preload','none');
       vio.observe(v);
     });
@@ -1251,46 +1101,32 @@ header{z-index:20;gap:16px}
   d.addEventListener('click',function(e){if(e.target===d)closePv()});
   d.addEventListener('close',function(){pv.pause();duck(false)});
 
-  /* Sound reels: silent loop, click plays the full cut with sound and ducks the bed */
-  function resetSoundReel(vid){
-    if(!vid) return;
-    vid.dataset.hold='';
-    vid.controls=false; vid.loop=true; vid.muted=true;
-    if(vid.dataset.loop) vid.src=vid.dataset.loop;
-    var frame=vid.closest('.reel-frame'); if(frame) frame.classList.remove('is-playing');
-    var btn=(vid.closest('.reel-frame')||document).querySelector('.reel-play')||document.getElementById(vid.id==='reel-vid'?'reel-play':vid.id==='regina-teaser-vid'?'regina-teaser-play':'regina-play');
-    if(btn) btn.style.display='';
-  }
-  function bindSoundReel(vidId, btnId, frameId){
-    var vid=document.getElementById(vidId), btn=document.getElementById(btnId), frame=document.getElementById(frameId);
-    if(!vid) return;
-    if(!vid.querySelector('source') && vid.dataset.loop) vid.src=vid.dataset.loop;
-    function play(){
-      ['reel-vid','regina-vid','regina-teaser-vid'].forEach(function(id){
-        if(id===vidId) return;
-        var other=document.getElementById(id);
-        if(other && other.dataset.hold==='1'){
-          other.pause();
-          resetSoundReel(other);
-        }
-      });
-      vid.dataset.hold='1';
-      vid.loop=false; vid.muted=false; vid.controls=true;
-      vid.src=vid.dataset.full;
-      var p=vid.play(); if(p&&p.catch)p.catch(function(){});
-      if(frame) frame.classList.add('is-playing');
-      if(btn) btn.style.display='none';
+  /* Showreel: silent loop, click plays the 2:47 cut with sound */
+  var reel=document.getElementById('reel-vid'), reelBtn=document.getElementById('reel-play'), reelFrame=document.querySelector('.reel-frame');
+  if(reel){
+    if(!reel.querySelector('source') && reel.dataset.loop){
+      reel.src=reel.dataset.loop;
+    }
+    function playReel(){
+      reel.dataset.hold='1';
+      reel.loop=false; reel.muted=false; reel.controls=true;
+      reel.src=reel.dataset.full; reel.play();
+      if(reelFrame) reelFrame.classList.add('is-playing');
+      if(reelBtn) reelBtn.style.display='none';
       duck(true);
     }
-    function reset(){
-      resetSoundReel(vid);
+    function resetReel(){
+      reel.dataset.hold='';
+      reel.controls=false; reel.loop=true; reel.muted=true;
+      reel.src=reel.dataset.loop;
+      if(reelFrame) reelFrame.classList.remove('is-playing');
+      if(reelBtn) reelBtn.style.display='';
       duck(false);
-      var p=vid.play(); if(p&&p.catch)p.catch(function(){});
+      var p=reel.play(); if(p&&p.catch)p.catch(function(){});
     }
-    if(btn) btn.addEventListener('click',function(e){e.stopPropagation();play()});
-    vid.addEventListener('ended',reset);
+    if(reelBtn) reelBtn.addEventListener('click',function(e){e.stopPropagation();playReel()});
+    reel.addEventListener('ended',resetReel);
   }
-  bindSoundReel('reel-vid','reel-play','reel-frame');
   var runwayReel=document.getElementById('runway-reel');
   if(runwayReel) runwayReel.addEventListener('click',function(e){
     var player=document.getElementById('reel-vid'), trigger=document.getElementById('reel-play');
@@ -1300,8 +1136,6 @@ header{z-index:20;gap:16px}
     trigger.click();
     player.focus({preventScroll:true});
   });
-  bindSoundReel('regina-vid','regina-play','regina-frame');
-  bindSoundReel('regina-teaser-vid','regina-teaser-play','regina-teaser-frame');
 
   /* CRT channel tuner */
   var chVid=document.getElementById('ch-vid');
@@ -1348,330 +1182,82 @@ header{z-index:20;gap:16px}
     var p=pv.play(); if(p&&p.catch)p.catch(function(){});
   });
 
-  /* SOUND ON — Web Audio cinematic synth bed (original). Off until the user toggles. */
+  /* Runway score: an original four-bar, 96 BPM instrumental. */
   var sndBtn=document.getElementById('snd');
-  var bed={ctx:null, master:null, on:false, ducking:false, clock:0, t0:0, nextT:0};
-  var BED_LEVEL=0.42, BED_DUCK=0.08;
-  var BPM=76, BEAT=60/BPM, SIXTH=BEAT/4, CHORD_BEATS=16, NCHORDS=6, CYCLE_BEATS=96;
-  function n2f(n){ return 440*Math.pow(2,(n-69)/12); }
-  /* Original modal progression in F# minor. Chord 4 (Emaj9) is the unexpected major lift. */
-  var CHORDS=[
-    {pad:[49,54,57,61,56], bass:30, arp:[42,49,54,57,54,49,52,49]},
-    {pad:[50,54,57,61,57], bass:26, arp:[38,45,50,54,50,45,49,45]},
-    {pad:[49,52,56,59,52], bass:25, arp:[37,44,49,52,49,44,47,44]},
-    {pad:[45,49,52,59,56], bass:33, arp:[33,40,45,49,45,40,47,40]},
-    {pad:[52,56,59,63,66], bass:28, arp:[40,47,52,56,52,47,51,47]},
-    {pad:[47,50,54,57,59], bass:35, arp:[35,42,47,50,47,42,45,42]}
-  ];
-  /* Sparse lead cues, in beats from cycle start: [beat, midi, durBeats, vel] */
-  var LEADS=[
-    [20,69,3,.22],
-    [36,71,.75,.2],[36.75,68,.75,.18],[37.5,69,2,.2],
-    [52,73,3.5,.24],
-    [66,68,1,.22],[67,71,1,.22],[68,75,2,.26],[70,73,2.5,.22]
-  ];
-  function makeIR(ctx, sec){
-    var n=Math.floor(ctx.sampleRate*sec), buf=ctx.createBuffer(2,n,ctx.sampleRate);
-    for(var c=0;c<2;c++){
-      var d=buf.getChannelData(c), prev=0;
-      for(var i=0;i<n;i++){
-        var x=(Math.random()*2-1)*Math.pow(1-i/n,1.7);
-        prev=prev*0.96+x*0.04;
-        d[i]=x*0.3+prev*0.7;
-      }
-    }
-    return buf;
-  }
-  function cutoffAt(scoreT){
-    var t=((scoreT% (CYCLE_BEATS*BEAT))+CYCLE_BEATS*BEAT)%(CYCLE_BEATS*BEAT);
-    if(t<20) return 520+t/20*400;
-    if(t<40) return 920+(t-20)/20*520;
-    if(t<55) return 1440+(t-40)/15*720;
-    if(t<70) return 2160-(t-55)/15*1080;
-    return 1080-(t-70)/5.79*500;
-  }
-  function buildGraph(ctx){
-    var master=ctx.createGain();
-    master.gain.value=0.0001;
-    var hp=ctx.createBiquadFilter(); hp.type='highpass'; hp.frequency.value=32;
-    master.connect(hp); hp.connect(ctx.destination);
-    var bus=ctx.createGain();
-    var dry=ctx.createGain(); dry.gain.value=0.84;
-    bus.connect(dry); dry.connect(master);
-    var delL=ctx.createDelay(1), delR=ctx.createDelay(1);
-    delL.delayTime.value=BEAT*0.75;
-    delR.delayTime.value=BEAT*0.75+0.02;
-    var fbL=ctx.createGain(), fbR=ctx.createGain();
-    fbL.gain.value=0.25; fbR.gain.value=0.23;
-    delL.connect(fbL); fbL.connect(delL);
-    delR.connect(fbR); fbR.connect(delR);
-    var merger=ctx.createChannelMerger(2);
-    delL.connect(merger,0,0); delR.connect(merger,0,1);
-    var dlp=ctx.createBiquadFilter(); dlp.type='lowpass'; dlp.frequency.value=2200;
-    var wet=ctx.createGain(); wet.gain.value=0.3;
-    merger.connect(dlp); dlp.connect(wet); wet.connect(master);
-    var conv=ctx.createConvolver(); conv.buffer=makeIR(ctx,2.3);
-    var cg=ctx.createGain(); cg.gain.value=0.3;
-    bus.connect(conv); conv.connect(cg); cg.connect(master);
-    bus.connect(delL); bus.connect(delR);
-    return {master:master, bus:bus};
-  }
-  function makeArp(ctx, bus){
-    var o1=ctx.createOscillator(); o1.type='sawtooth';
-    var o2=ctx.createOscillator(); o2.type='square'; o2.detune.value=7;
-    var mix=ctx.createGain(); mix.gain.value=0.55;
-    o1.connect(mix); o2.connect(mix);
-    var f=ctx.createBiquadFilter(); f.type='lowpass'; f.Q.value=1.05; f.frequency.value=600;
-    var g=ctx.createGain(); g.gain.value=0.0001;
-    mix.connect(f); f.connect(g); g.connect(bus);
-    var lfo=ctx.createOscillator(); lfo.type='sine'; lfo.frequency.value=0.07;
-    var lg=ctx.createGain(); lg.gain.value=240;
-    lfo.connect(lg); lg.connect(f.frequency);
-    o1.start(); o2.start(); lfo.start();
-    return {o1:o1,o2:o2,f:f,g:g};
-  }
-  function makeSub(ctx, bus){
-    var o=ctx.createOscillator(); o.type='sine'; o.frequency.value=n2f(30);
-    var f=ctx.createBiquadFilter(); f.type='lowpass'; f.frequency.value=110;
-    var g=ctx.createGain(); g.gain.value=0.11;
-    o.connect(f); f.connect(g); g.connect(bus);
-    o.start();
-    return {o:o,g:g};
-  }
-  function makePads(ctx, bus){
-    var pans=[-0.58,-0.28,0.06,0.32,0.62], voices=[];
-    for(var i=0;i<5;i++){
-      var o1=ctx.createOscillator(); o1.type='sawtooth'; o1.frequency.value=n2f(CHORDS[0].pad[i]);
-      var o2=ctx.createOscillator(); o2.type='sawtooth'; o2.frequency.value=n2f(CHORDS[0].pad[i]); o2.detune.value=9;
-      var g=ctx.createGain(); g.gain.value=0.0001;
-      var f=ctx.createBiquadFilter(); f.type='lowpass'; f.frequency.value=1400; f.Q.value=0.35;
-      var p=ctx.createStereoPanner(); p.pan.value=pans[i];
-      o1.connect(g); o2.connect(g); g.connect(f); f.connect(p); p.connect(bus);
-      o1.start(); o2.start();
-      voices.push({o1:o1,o2:o2,g:g,f:f});
-    }
-    return voices;
-  }
-  function setPads(voices, chord, time, attack, fromChord, fadeIn){
-    attack=attack||1.1;
-    var target=chord.bass===28?0.07:0.055;
-    for(var i=0;i<voices.length;i++){
-      var n=chord.pad[i]||chord.pad[chord.pad.length-1];
-      var f=n2f(n);
-      var prev=fromChord?n2f(fromChord.pad[i]||fromChord.pad[fromChord.pad.length-1]):(voices[i].o1.frequency.value||f);
-      try{ voices[i].o1.frequency.cancelScheduledValues(time); voices[i].o2.frequency.cancelScheduledValues(time); }catch(e){}
-      voices[i].o1.frequency.setValueAtTime(prev, time);
-      voices[i].o1.frequency.linearRampToValueAtTime(f, time+attack);
-      voices[i].o2.frequency.setValueAtTime(prev, time);
-      voices[i].o2.frequency.linearRampToValueAtTime(f, time+attack);
-      voices[i].g.gain.cancelScheduledValues(time);
-      if(fadeIn){
-        voices[i].g.gain.setValueAtTime(0.0001, time);
-        voices[i].g.gain.linearRampToValueAtTime(target, time+attack);
-      }else{
-        voices[i].g.gain.setValueAtTime(target, time);
-      }
-    }
-  }
-  function bell(ctx, bus, midi, time, dur, vel){
-    var freq=n2f(midi);
-    var o1=ctx.createOscillator(); o1.type='sine'; o1.frequency.value=freq;
-    var o2=ctx.createOscillator(); o2.type='sine'; o2.frequency.value=freq*2;
-    var wow=ctx.createOscillator(); wow.type='sine'; wow.frequency.value=0.37;
-    var wg=ctx.createGain(); wg.gain.value=14;
-    wow.connect(wg); wg.connect(o1.detune); wg.connect(o2.detune);
-    var f=ctx.createBiquadFilter(); f.type='lowpass'; f.frequency.value=2100; f.Q.value=0.6;
-    var g=ctx.createGain();
-    var peak=Math.max(0.0002,(vel||.2)*0.55);
-    g.gain.setValueAtTime(0.0001,time);
-    g.gain.exponentialRampToValueAtTime(peak,time+0.03);
-    g.gain.exponentialRampToValueAtTime(peak*0.45,time+Math.min(0.6,dur*0.4));
-    g.gain.exponentialRampToValueAtTime(0.0001,time+dur);
-    var p=ctx.createStereoPanner(); p.pan.value=(midi%7-3)*0.08;
-    o1.connect(g); o2.connect(g); g.connect(f); f.connect(p); p.connect(bus);
-    var g2=ctx.createGain(); g2.gain.value=0.18;
-    o2.disconnect(); o2.connect(g2); g2.connect(g);
-    o1.start(time); o2.start(time); wow.start(time);
-    o1.stop(time+dur+0.05); o2.stop(time+dur+0.05); wow.stop(time+dur+0.05);
-  }
-  function arpHit(arp, midi, time){
-    var f=n2f(midi);
-    arp.o1.frequency.setValueAtTime(f,time);
-    arp.o2.frequency.setValueAtTime(f,time);
-    arp.g.gain.cancelScheduledValues(time);
-    arp.g.gain.setValueAtTime(0.0001,time);
-    arp.g.gain.exponentialRampToValueAtTime(0.13,time+0.008);
-    arp.g.gain.exponentialRampToValueAtTime(0.0001,time+0.15);
-  }
-  function filterCurve(arp, t0, score0, dur){
-    var step=0.5, t=0;
-    while(t<=dur){
-      var hz=cutoffAt(score0+t);
-      arp.f.frequency.setValueAtTime(hz, t0+t);
-      t+=step;
-    }
-  }
-  function fillBed(ctx, seconds, offset){
-    offset=offset||0;
-    var graph=buildGraph(ctx);
-    var arp=makeArp(ctx, graph.bus);
-    var sub=makeSub(ctx, graph.bus);
-    var pads=makePads(ctx, graph.bus);
-    graph.master.gain.setValueAtTime(0.0001,0);
-    graph.master.gain.exponentialRampToValueAtTime(BED_LEVEL,0.5);
-    if(seconds>0.9){
-      graph.master.gain.setValueAtTime(BED_LEVEL, Math.max(0.5,seconds-0.9));
-      graph.master.gain.exponentialRampToValueAtTime(0.0001, seconds-0.02);
-    }
-    filterCurve(arp, 0, offset, seconds);
-    var startBeat=offset/BEAT, endBeat=(offset+seconds)/BEAT;
-    var firstChord=Math.floor(startBeat/CHORD_BEATS)%NCHORDS;
-    if(firstChord<0) firstChord+=NCHORDS;
-    setPads(pads, CHORDS[firstChord], 0, 0.35, null, true);
-    sub.o.frequency.setValueAtTime(n2f(CHORDS[firstChord].bass), 0);
-    var lastCi=firstChord;
-    var b=Math.floor(startBeat*4)/4;
-    for(; b<endBeat+0.01; b+=0.25){
-      if(b<startBeat-0.001) continue;
-      var at= (b*BEAT)-offset;
-      if(at<0) at=0;
-      var pos=((b%CYCLE_BEATS)+CYCLE_BEATS)%CYCLE_BEATS;
-      var ci=Math.floor(pos/CHORD_BEATS)%NCHORDS;
-      if(ci!==lastCi && at>=0){
-        setPads(pads, CHORDS[ci], at, 1.15, CHORDS[lastCi], false);
-        sub.o.frequency.setValueAtTime(n2f(CHORDS[lastCi].bass), at);
-        sub.o.frequency.linearRampToValueAtTime(n2f(CHORDS[ci].bass), at+0.7);
-        lastCi=ci;
-      }
-      var step=Math.round((pos%2)*4)%8;
-      /* 8-step arp: two steps per beat, pos is in beats; 16ths = pos*4 */
-      var s16=Math.round(pos*4)%8;
-      if(Math.abs((pos*4)-Math.round(pos*4))<0.001 && at>=0 && at<seconds){
-        arpHit(arp, CHORDS[ci].arp[s16], at);
-      }
-    }
-    for(var i=0;i<LEADS.length;i++){
-      var ev=LEADS[i];
-      var evT=ev[0]*BEAT;
-      /* also repeat in neighboring cycles if window wraps */
-      for(var k=-1;k<=2;k++){
-        var t=evT+k*CYCLE_BEATS*BEAT-offset;
-        if(t>=-0.05 && t<seconds) bell(ctx, graph.bus, ev[1], Math.max(0,t), ev[2]*BEAT, ev[3]);
-      }
-    }
-    return graph;
-  }
+  var pulseBtn=document.getElementById('runway-pulse');
+  var bed={ctx:null, master:null, on:false, paused:false, ducking:false, inHero:true, timer:0};
   function ensureBed(){
     if(bed.ctx) return bed;
     var AC=window.AudioContext||window.webkitAudioContext;
     if(!AC) return null;
     var ctx=new AC();
-    var graph=buildGraph(ctx);
-    bed.ctx=ctx; bed.master=graph.master; bed.bus=graph.bus;
-    bed.arp=makeArp(ctx, graph.bus);
-    bed.sub=makeSub(ctx, graph.bus);
-    bed.pads=makePads(ctx, graph.bus);
-    setPads(bed.pads, CHORDS[0], ctx.currentTime, 0.8, null, true);
-    bed.ci=-1;
+    var master=ctx.createGain();
+    master.gain.value=0.0001;
+    master.connect(ctx.destination);
+    function note(t,hz,type,level,length,slide){
+      var osc=ctx.createOscillator(), amp=ctx.createGain();
+      osc.type=type; osc.frequency.setValueAtTime(hz,t);
+      if(slide) osc.frequency.exponentialRampToValueAtTime(slide,t+length*.65);
+      amp.gain.setValueAtTime(0,t);
+      amp.gain.linearRampToValueAtTime(level,t+.009);
+      amp.gain.exponentialRampToValueAtTime(.0001,t+length);
+      osc.connect(amp); amp.connect(master); osc.start(t); osc.stop(t+length+.01);
+      osc.onended=function(){osc.disconnect();amp.disconnect()};
+    }
+    var step=0,next=0,eighth=60/96/2,roots=[55,55,65.406,49];
+    bed.start=function(){
+      next=ctx.currentTime+.025;
+      function tick(){
+        if(next<ctx.currentTime) next=ctx.currentTime+.015;
+        while(next<ctx.currentTime+.14){
+          var i=step%8,root=roots[Math.floor(step/8)%4];
+          if(i%2===0) note(next,104,'sine',.26,.14,47);
+          if(i===0||i===3||i===6) note(next,root*(i===6?1.5:1),'triangle',.24,i===0?.52:.27);
+          if(i===1||i===5) note(next,root*8,'sine',.055,.085);
+          next+=eighth; step=(step+1)%32;
+        }
+      }
+      tick(); bed.timer=setInterval(tick,50);
+    };
+    bed.ctx=ctx; bed.master=master;
     return bed;
   }
-  function stopClock(){
-    if(bed.clock){ clearTimeout(bed.clock); bed.clock=0; }
+  function syncBed(){
+    pulseBtn.textContent=!bed.on?'Play runway pulse':bed.paused?'Resume pulse':'Pause pulse';
+    if(!bed.ctx) return;
+    var audible=bed.on&&!bed.paused&&bed.inHero&&!bed.ducking&&!document.hidden;
+    bed.master.gain.setTargetAtTime(audible?.70:0,bed.ctx.currentTime,.035);
+    if(audible&&!bed.timer) bed.start();
+    if(!audible&&bed.timer){ clearInterval(bed.timer); bed.timer=0; }
   }
-  function startClock(){
-    stopClock();
-    if(!bed.ctx||!bed.arp) return;
-    var now=bed.ctx.currentTime;
-    if(!bed.t0) bed.t0=now;
-    if(!bed.nextT || bed.nextT<now) bed.nextT=now+0.04;
-    function step(){
-      if(!bed.on||!bed.ctx) return;
-      var horizon=bed.ctx.currentTime+0.45;
-      while(bed.nextT<horizon){
-        var score=bed.nextT-bed.t0;
-        var beat=score/BEAT;
-        var pos=((beat%CYCLE_BEATS)+CYCLE_BEATS)%CYCLE_BEATS;
-        var ci=Math.floor(pos/CHORD_BEATS)%NCHORDS;
-        if(ci!==bed.ci){
-          setPads(bed.pads, CHORDS[ci], bed.nextT, 1.15, bed.ci>=0?CHORDS[bed.ci]:null, false);
-          var prev=bed.ci<0?CHORDS[0].bass:CHORDS[bed.ci].bass;
-          bed.sub.o.frequency.setValueAtTime(n2f(prev), bed.nextT);
-          bed.sub.o.frequency.linearRampToValueAtTime(n2f(CHORDS[ci].bass), bed.nextT+0.7);
-          bed.ci=ci;
-        }
-        var s16=Math.round(pos*4)%8;
-        if(Math.abs((pos*4)-Math.round(pos*4))<0.02){
-          arpHit(bed.arp, CHORDS[ci].arp[s16], bed.nextT);
-        }
-        for(var i=0;i<LEADS.length;i++){
-          var ev=LEADS[i];
-          var cyc=Math.floor(beat/CYCLE_BEATS);
-          var evBeat=ev[0]+cyc*CYCLE_BEATS;
-          if(Math.abs(beat-evBeat)<0.2){
-            var key=evBeat.toFixed(2);
-            if(bed.lastLead!==key){
-              bed.lastLead=key;
-              bell(bed.ctx, bed.bus, ev[1], bed.nextT, ev[2]*BEAT, ev[3]);
-            }
-          }
-        }
-        bed.arp.f.frequency.setTargetAtTime(cutoffAt(score), bed.nextT, 0.4);
-        bed.nextT+=SIXTH;
-      }
-      bed.clock=setTimeout(step, 80);
-    }
-    step();
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(entries){bed.inHero=entries[0].isIntersecting;syncBed()})
+      .observe(document.querySelector('.hero.swan'));
   }
+  document.addEventListener('visibilitychange',syncBed);
   function setSound(on){
     var b=ensureBed();
     if(!b) return;
     if(b.ctx.state==='suspended') b.ctx.resume();
     b.on=on;
-    var t=b.ctx.currentTime;
-    b.master.gain.cancelScheduledValues(t);
-    b.master.gain.exponentialRampToValueAtTime(on&&!b.ducking?BED_LEVEL:0.0001, t+0.65);
+    b.paused=false;
     if(sndBtn){
       sndBtn.setAttribute('aria-pressed', on?'true':'false');
       sndBtn.textContent=on?'Sound on':'Sound off';
     }
-    stopClock();
-    if(on) startClock();
+    syncBed();
   }
   function duck(dck){
     bed.ducking=!!dck;
-    if(!bed.ctx||!bed.on) return;
-    var t=bed.ctx.currentTime;
-    bed.master.gain.cancelScheduledValues(t);
-    bed.master.gain.exponentialRampToValueAtTime(dck?BED_DUCK:BED_LEVEL, t+0.25);
+    syncBed();
   }
   window.__ntDuck=duck;
-  window.__ntRenderBed=function(seconds, offset){
-    seconds=seconds||30; offset=offset==null?30:offset;
-    var AC=window.OfflineAudioContext||window.webkitOfflineAudioContext;
-    var rate=44100;
-    var ctx=new AC(2, Math.ceil(rate*seconds), rate);
-    fillBed(ctx, seconds, offset);
-    return ctx.startRendering().then(function(buf){
-      var n=buf.length, ch=buf.numberOfChannels, wav=new ArrayBuffer(44+n*ch*2), v=new DataView(wav);
-      function wstr(o,s){ for(var i=0;i<s.length;i++) v.setUint8(o+i,s.charCodeAt(i)); }
-      wstr(0,'RIFF'); v.setUint32(4,36+n*ch*2,true); wstr(8,'WAVE'); wstr(12,'fmt ');
-      v.setUint32(16,16,true); v.setUint16(20,1,true); v.setUint16(22,ch,true);
-      v.setUint32(24,rate,true); v.setUint32(28,rate*ch*2,true); v.setUint16(32,ch*2,true); v.setUint16(34,16,true);
-      wstr(36,'data'); v.setUint32(40,n*ch*2,true);
-      var off=44;
-      for(var i=0;i<n;i++){
-        for(var c=0;c<ch;c++){
-          var x=Math.max(-1,Math.min(1,buf.getChannelData(c)[i]));
-          v.setInt16(off, x<0?x*0x8000:x*0x7fff, true);
-          off+=2;
-        }
-      }
-      var bytes=new Uint8Array(wav), s='', CHUNK=0x8000;
-      for(var i=0;i<bytes.length;i+=CHUNK) s+=String.fromCharCode.apply(null, bytes.subarray(i,i+CHUNK));
-      return btoa(s);
-    });
-  };
   if(sndBtn) sndBtn.addEventListener('click',function(){setSound(!bed.on)});
+  pulseBtn.addEventListener('click',function(){
+    if(!bed.on){setSound(true);return}
+    bed.paused=!bed.paused;
+    syncBed();
+  });
 
   /* When sound is on, hovering a card with data-snd unmutes that preview (if it has audio). */
   document.querySelectorAll('[data-snd]').forEach(function(card){
